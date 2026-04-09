@@ -1,9 +1,10 @@
 plugins {
     alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinSerialization)
-    alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -46,6 +47,7 @@ dependencies {
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
     ksp(libs.kotlin.metadata.jvm)
+    implementation(libs.github.albfernandez.juniversalchardet)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -55,6 +57,21 @@ dependencies {
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
     implementation(libs.androidx.core.splashscreen)
+    implementation(libs.kotlinx.serialization.json)
+
+
+    implementation(libs.androidx.lifecycle.runtimeCompose)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.timber)
+
+    //Media
+    implementation(libs.github.anilbeesetti.nextlib.mediainfo)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -1,0 +1,35 @@
+package dev.anilbeesetti.nextplayer.core.domain
+
+import dev.anilbeesetti.nextplayer.core.data.repository.MediaRepository
+import dev.anilbeesetti.nextplayer.core.data.repository.PreferencesRepository
+import dev.anilbeesetti.nextplayer.core.model.Folder
+import dev.anilbeesetti.nextplayer.core.model.Sort
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.flowOn
+import mazentas.doki.videoplayer.common.Dispatcher
+import mazentas.doki.videoplayer.common.DokiDispatcher
+import javax.inject.Inject
+
+class GetSortedFoldersUseCase @Inject constructor(
+    private val mediaRepository: MediaRepository,
+    private val preferencesRepository: PreferencesRepository,
+    @Dispatcher(DokiDispatcher.Default) private val defaultDispatcher: CoroutineDispatcher,
+) {
+
+    operator fun invoke(): Flow<List<Folder>> {
+        return combine(
+            mediaRepository.getFoldersFlow(),
+            preferencesRepository.applicationPreferences,
+        ) { folders, preferences ->
+
+            val nonExcludedDirectories = folders.filter {
+                it.mediaList.isNotEmpty() && it.path !in preferences.excludeFolders
+            }
+
+            val sort = Sort(by = preferences.sortBy, order = preferences.sortOrder)
+            nonExcludedDirectories.sortedWith(sort.folderComparator())
+        }.flowOn(defaultDispatcher)
+    }
+}

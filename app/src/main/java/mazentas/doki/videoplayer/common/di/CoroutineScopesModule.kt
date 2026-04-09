@@ -4,13 +4,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.anilbeesetti.nextplayer.core.common.Dispatcher
-import dev.anilbeesetti.nextplayer.core.common.NextDispatchers
 import javax.inject.Qualifier
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
+import mazentas.doki.videoplayer.common.Dispatcher
+import mazentas.doki.videoplayer.common.DokiDispatcher
 
 @Retention(AnnotationRetention.RUNTIME)
 @Qualifier
@@ -23,6 +23,6 @@ object CoroutineScopesModule {
     @Singleton
     @ApplicationScope
     fun providesCoroutineScope(
-        @Dispatcher(NextDispatchers.Default) dispatcher: CoroutineDispatcher,
+        @Dispatcher(DokiDispatcher .Default) dispatcher: CoroutineDispatcher,
     ): CoroutineScope = CoroutineScope(SupervisorJob() + dispatcher)
 }
