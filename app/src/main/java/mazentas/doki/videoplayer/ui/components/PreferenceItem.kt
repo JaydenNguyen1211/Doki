@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.anilbeesetti.nextplayer.core.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.NextIcons
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable

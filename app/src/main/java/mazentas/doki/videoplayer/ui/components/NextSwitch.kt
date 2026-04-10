@@ -7,7 +7,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import dev.anilbeesetti.nextplayer.core.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.NextIcons
 
 @Composable
 fun NextSwitch(

@@ -4,6 +4,15 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import dev.anilbeesetti.nextplayer.core.database.dao.DirectoryDao
+import dev.anilbeesetti.nextplayer.core.database.dao.MediumDao
+import dev.anilbeesetti.nextplayer.core.database.dao.MediumStateDao
+import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
+import dev.anilbeesetti.nextplayer.core.database.entities.DirectoryEntity
+import dev.anilbeesetti.nextplayer.core.database.entities.MediumEntity
+import dev.anilbeesetti.nextplayer.core.database.entities.MediumStateEntity
+import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
+import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
 
 @Database(
     entities = [
