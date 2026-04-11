@@ -9,11 +9,11 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.anilbeesetti.nextplayer.core.common.di.ApplicationScope
-import dev.anilbeesetti.nextplayer.core.datastore.serializer.ApplicationPreferencesSerializer
-import dev.anilbeesetti.nextplayer.core.datastore.serializer.PlayerPreferencesSerializer
-import dev.anilbeesetti.nextplayer.core.model.ApplicationPreferences
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.common.di.ApplicationScope
+import mazentas.doki.videoplayer.datastore.serializer.ApplicationPreferencesSerializer
+import mazentas.doki.videoplayer.datastore.serializer.PlayerPreferencesSerializer
+import mazentas.doki.videoplayer.model.ApplicationPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope

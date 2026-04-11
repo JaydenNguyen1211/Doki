@@ -1,11 +1,11 @@
-package dev.anilbeesetti.nextplayer.core.database
+package mazentas.doki.videoplayer.database
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.anilbeesetti.nextplayer.core.database.dao.DirectoryDao
-import dev.anilbeesetti.nextplayer.core.database.dao.MediumDao
+import mazentas.doki.videoplayer.database.dao.DirectoryDao
+import mazentas.doki.videoplayer.database.dao.MediumDao
 
 @Module
 @InstallIn(SingletonComponent::class)

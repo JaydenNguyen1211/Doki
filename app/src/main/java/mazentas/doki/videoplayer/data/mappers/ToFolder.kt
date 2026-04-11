@@ -1,9 +1,9 @@
-package dev.anilbeesetti.nextplayer.core.data.mappers
+package mazentas.doki.videoplayer.data.mappers
 
-import dev.anilbeesetti.nextplayer.core.common.Utils
-import dev.anilbeesetti.nextplayer.core.database.relations.DirectoryWithMedia
-import dev.anilbeesetti.nextplayer.core.database.relations.MediumWithInfo
-import dev.anilbeesetti.nextplayer.core.model.Folder
+import mazentas.doki.videoplayer.common.Utils
+import mazentas.doki.videoplayer.database.relations.DirectoryWithMedia
+import mazentas.doki.videoplayer.database.relations.MediumWithInfo
+import mazentas.doki.videoplayer.model.Folder
 
 fun DirectoryWithMedia.toFolder() = Folder(
     name = directory.name,

@@ -1,8 +1,8 @@
-package dev.anilbeesetti.nextplayer.core.data.repository.fake
+package mazentas.doki.videoplayer.data.repository.fake
 
-import dev.anilbeesetti.nextplayer.core.data.repository.PreferencesRepository
-import dev.anilbeesetti.nextplayer.core.model.ApplicationPreferences
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.data.repository.PreferencesRepository
+import mazentas.doki.videoplayer.model.ApplicationPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update

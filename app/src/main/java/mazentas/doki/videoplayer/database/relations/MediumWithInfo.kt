@@ -1,12 +1,12 @@
-package dev.anilbeesetti.nextplayer.core.database.relations
+package mazentas.doki.videoplayer.database.relations
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumStateEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.AudioStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.MediumEntity
+import mazentas.doki.videoplayer.database.entities.MediumStateEntity
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.VideoStreamInfoEntity
 
 data class MediumWithInfo(
     @Embedded val mediumEntity: MediumEntity,

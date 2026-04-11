@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.model
+package mazentas.doki.videoplayer.model
 
 import java.io.Serializable
 import java.util.Date

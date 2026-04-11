@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.model
+package mazentas.doki.videoplayer.model
 
 enum class DoubleTapGesture {
     PLAY_PAUSE,

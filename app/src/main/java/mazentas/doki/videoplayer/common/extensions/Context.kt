@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.common.extensions
+package mazentas.doki.videoplayer.common.extensions
 
 import android.app.UiModeManager
 import android.content.ContentResolver

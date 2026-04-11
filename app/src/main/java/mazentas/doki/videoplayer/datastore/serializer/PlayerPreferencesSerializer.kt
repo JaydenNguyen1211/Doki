@@ -1,8 +1,8 @@
-package dev.anilbeesetti.nextplayer.core.datastore.serializer
+package mazentas.doki.videoplayer.datastore.serializer
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import java.io.InputStream
 import java.io.OutputStream
 import kotlinx.serialization.SerializationException

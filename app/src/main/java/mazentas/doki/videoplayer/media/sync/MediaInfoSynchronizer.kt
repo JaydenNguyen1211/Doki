@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.media.sync
+package mazentas.doki.videoplayer.media.sync
 
 import android.net.Uri
 

@@ -1,12 +1,12 @@
-package dev.anilbeesetti.nextplayer.core.database.dao
+package mazentas.doki.videoplayer.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import dev.anilbeesetti.nextplayer.core.database.entities.DirectoryEntity
-import dev.anilbeesetti.nextplayer.core.database.relations.DirectoryWithMedia
 import kotlinx.coroutines.flow.Flow
+import mazentas.doki.videoplayer.database.entities.DirectoryEntity
+import mazentas.doki.videoplayer.database.relations.DirectoryWithMedia
 
 @Dao
 interface DirectoryDao {

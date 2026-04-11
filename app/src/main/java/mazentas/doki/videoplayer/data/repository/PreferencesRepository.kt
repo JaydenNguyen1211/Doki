@@ -1,7 +1,7 @@
-package dev.anilbeesetti.nextplayer.core.data.repository
+package mazentas.doki.videoplayer.data.repository
 
-import dev.anilbeesetti.nextplayer.core.model.ApplicationPreferences
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.model.ApplicationPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import kotlinx.coroutines.flow.Flow
 
 interface PreferencesRepository {

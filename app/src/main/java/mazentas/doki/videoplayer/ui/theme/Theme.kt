@@ -1,5 +1,3 @@
-@file:JvmName("ColorKt")
-
 package mazentas.doki.videoplayer.ui.theme
 
 import android.app.Activity

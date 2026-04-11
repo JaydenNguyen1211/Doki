@@ -1,8 +1,9 @@
-package dev.anilbeesetti.nextplayer.core.ui.composables
+package mazentas.doki.videoplayer.ui.composables
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import dev.anilbeesetti.nextplayer.core.ui.R
+import mazentas.doki.videoplayer.R
+
 
 @Composable
 fun PermissionMissingView(

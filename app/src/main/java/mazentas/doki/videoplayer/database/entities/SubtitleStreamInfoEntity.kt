@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.database.entities
+package mazentas.doki.videoplayer.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

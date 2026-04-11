@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.ui.preview
+package mazentas.doki.videoplayer.ui.preview
 
 import android.content.res.Configuration
 import androidx.compose.ui.tooling.preview.Preview

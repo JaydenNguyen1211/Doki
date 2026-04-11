@@ -1,7 +1,7 @@
-package dev.anilbeesetti.nextplayer.core.datastore.datasource
+package mazentas.doki.videoplayer.datastore.datasource
 
 import androidx.datastore.core.DataStore
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import javax.inject.Inject
 import timber.log.Timber
 

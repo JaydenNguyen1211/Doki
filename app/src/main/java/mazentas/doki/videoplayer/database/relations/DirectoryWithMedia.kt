@@ -1,9 +1,9 @@
-package dev.anilbeesetti.nextplayer.core.database.relations
+package mazentas.doki.videoplayer.database.relations
 
 import androidx.room.Embedded
 import androidx.room.Relation
-import dev.anilbeesetti.nextplayer.core.database.entities.DirectoryEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumEntity
+import mazentas.doki.videoplayer.database.entities.DirectoryEntity
+import mazentas.doki.videoplayer.database.entities.MediumEntity
 
 data class DirectoryWithMedia(
     @Embedded val directory: DirectoryEntity,

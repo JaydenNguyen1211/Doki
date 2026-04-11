@@ -1,8 +1,8 @@
-package dev.anilbeesetti.nextplayer.core.domain
+package mazentas.doki.videoplayer.domain
 
-import dev.anilbeesetti.nextplayer.core.data.repository.PreferencesRepository
-import dev.anilbeesetti.nextplayer.core.model.Folder
-import dev.anilbeesetti.nextplayer.core.model.MediaViewMode
+import mazentas.doki.videoplayer.data.repository.PreferencesRepository
+import mazentas.doki.videoplayer.model.Folder
+import mazentas.doki.videoplayer.model.MediaViewMode
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine

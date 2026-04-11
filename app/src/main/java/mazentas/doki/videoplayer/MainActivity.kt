@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import mazentas.doki.videoplayer.ui.theme.SmartVideoPlayerTheme
+import mazentas.doki.videoplayer.ui.theme.DokiPlayerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
-            SmartVideoPlayerTheme {
+            DokiPlayerTheme() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
 
                 }

@@ -1,7 +1,7 @@
-package dev.anilbeesetti.nextplayer.core.data.mappers
+package mazentas.doki.videoplayer.data.mappers
 
-import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.model.VideoStreamInfo
+import mazentas.doki.videoplayer.database.entities.VideoStreamInfoEntity
+import mazentas.doki.videoplayer.model.VideoStreamInfo
 
 fun VideoStreamInfoEntity.toVideoStreamInfo() = VideoStreamInfo(
     index = index,

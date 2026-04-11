@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.media.services
+package mazentas.doki.videoplayer.media.services
 
 import android.net.Uri
 import android.os.Build

@@ -1,9 +1,9 @@
-package dev.anilbeesetti.nextplayer.core.data.repository
+package mazentas.doki.videoplayer.data.repository
 
-import dev.anilbeesetti.nextplayer.core.datastore.datasource.AppPreferencesDataSource
-import dev.anilbeesetti.nextplayer.core.datastore.datasource.PlayerPreferencesDataSource
-import dev.anilbeesetti.nextplayer.core.model.ApplicationPreferences
-import dev.anilbeesetti.nextplayer.core.model.PlayerPreferences
+import mazentas.doki.videoplayer.datastore.datasource.AppPreferencesDataSource
+import mazentas.doki.videoplayer.datastore.datasource.PlayerPreferencesDataSource
+import mazentas.doki.videoplayer.model.ApplicationPreferences
+import mazentas.doki.videoplayer.model.PlayerPreferences
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 

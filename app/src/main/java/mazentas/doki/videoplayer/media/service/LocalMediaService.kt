@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.media.services
+package mazentas.doki.videoplayer.media.services
 
 import android.app.Activity
 import android.content.ContentValues
@@ -13,9 +13,9 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.anilbeesetti.nextplayer.core.common.extensions.deleteMedia
-import dev.anilbeesetti.nextplayer.core.common.extensions.getPath
-import dev.anilbeesetti.nextplayer.core.common.extensions.updateMedia
+import mazentas.doki.videoplayer.common.extensions.deleteMedia
+import mazentas.doki.videoplayer.common.extensions.getPath
+import mazentas.doki.videoplayer.common.extensions.updateMedia
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton

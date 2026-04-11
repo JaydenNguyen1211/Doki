@@ -1,18 +1,18 @@
-package dev.anilbeesetti.nextplayer.core.database
+package mazentas.doki.videoplayer.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import dev.anilbeesetti.nextplayer.core.database.dao.DirectoryDao
-import dev.anilbeesetti.nextplayer.core.database.dao.MediumDao
-import dev.anilbeesetti.nextplayer.core.database.dao.MediumStateDao
-import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.DirectoryEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumStateEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
+import mazentas.doki.videoplayer.database.dao.DirectoryDao
+import mazentas.doki.videoplayer.database.dao.MediumDao
+import mazentas.doki.videoplayer.database.dao.MediumStateDao
+import mazentas.doki.videoplayer.database.entities.AudioStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.DirectoryEntity
+import mazentas.doki.videoplayer.database.entities.MediumEntity
+import mazentas.doki.videoplayer.database.entities.MediumStateEntity
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.VideoStreamInfoEntity
 
 @Database(
     entities = [
@@ -23,7 +23,7 @@ import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
         AudioStreamInfoEntity::class,
         SubtitleStreamInfoEntity::class,
     ],
-    version = 3,
+    version = 4,
     exportSchema = true,
 )
 abstract class MediaDatabase : RoomDatabase() {

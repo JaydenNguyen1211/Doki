@@ -1,7 +1,7 @@
-package dev.anilbeesetti.nextplayer.core.data.mappers
+package mazentas.doki.videoplayer.data.mappers
 
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.model.SubtitleStreamInfo
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.model.SubtitleStreamInfo
 
 fun SubtitleStreamInfoEntity.toSubtitleStreamInfo() = SubtitleStreamInfo(
     index = index,

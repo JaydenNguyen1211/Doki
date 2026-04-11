@@ -1,10 +1,10 @@
-package dev.anilbeesetti.nextplayer.core.data.mappers
+package mazentas.doki.videoplayer.data.mappers
 
-import dev.anilbeesetti.nextplayer.core.common.Utils
-import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.relations.MediumWithInfo
-import dev.anilbeesetti.nextplayer.core.model.Video
+import mazentas.doki.videoplayer.common.Utils
+import mazentas.doki.videoplayer.database.entities.AudioStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.database.relations.MediumWithInfo
+import mazentas.doki.videoplayer.model.Video
 import java.util.Date
 
 fun MediumWithInfo.toVideo() = Video(

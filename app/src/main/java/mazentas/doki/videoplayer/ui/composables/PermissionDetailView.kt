@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.ui.composables
+package mazentas.doki.videoplayer.ui.composables
 
 import android.Manifest
 import android.content.Intent
@@ -22,7 +22,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import dev.anilbeesetti.nextplayer.core.ui.preview.DayNightPreview
+import mazentas.doki.videoplayer.ui.preview.DayNightPreview
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.theme.DokiPlayerTheme
 

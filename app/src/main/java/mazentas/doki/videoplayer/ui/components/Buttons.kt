@@ -1,10 +1,11 @@
-package dev.anilbeesetti.nextplayer.core.ui.components
+package mazentas.doki.videoplayer.ui.components
 
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import mazentas.doki.videoplayer.R
 
 @Composable
 fun DoneButton(

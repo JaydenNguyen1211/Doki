@@ -4,12 +4,12 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.anilbeesetti.nextplayer.core.media.services.LocalMediaService
-import dev.anilbeesetti.nextplayer.core.media.services.MediaService
-import dev.anilbeesetti.nextplayer.core.media.sync.LocalMediaInfoSynchronizer
-import dev.anilbeesetti.nextplayer.core.media.sync.LocalMediaSynchronizer
-import dev.anilbeesetti.nextplayer.core.media.sync.MediaInfoSynchronizer
-import dev.anilbeesetti.nextplayer.core.media.sync.MediaSynchronizer
+import mazentas.doki.videoplayer.media.services.LocalMediaService
+import mazentas.doki.videoplayer.media.services.MediaService
+import mazentas.doki.videoplayer.media.sync.LocalMediaInfoSynchronizer
+import mazentas.doki.videoplayer.media.sync.LocalMediaSynchronizer
+import mazentas.doki.videoplayer.media.sync.MediaInfoSynchronizer
+import mazentas.doki.videoplayer.media.sync.MediaSynchronizer
 import javax.inject.Singleton
 
 @Module

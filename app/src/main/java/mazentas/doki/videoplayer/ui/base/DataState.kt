@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.ui.base
+package mazentas.doki.videoplayer.ui.base
 
 sealed class DataState<out T : Any?> {
     data object Loading : DataState<Nothing>()

@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.common.di
+package mazentas.doki.videoplayer.common.di
 
 import dagger.Module
 import dagger.Provides

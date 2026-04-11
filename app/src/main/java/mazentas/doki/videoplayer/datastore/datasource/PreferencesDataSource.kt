@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.datastore.datasource
+package mazentas.doki.videoplayer.datastore.datasource
 
 import kotlinx.coroutines.flow.Flow
 

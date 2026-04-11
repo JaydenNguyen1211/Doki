@@ -1,14 +1,14 @@
-package dev.anilbeesetti.nextplayer.core.database.dao
+package mazentas.doki.videoplayer.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Upsert
-import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.relations.MediumWithInfo
+import mazentas.doki.videoplayer.database.entities.AudioStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.MediumEntity
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.VideoStreamInfoEntity
+import mazentas.doki.videoplayer.database.relations.MediumWithInfo
 import kotlinx.coroutines.flow.Flow
 
 @Dao

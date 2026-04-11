@@ -1,9 +1,9 @@
-package dev.anilbeesetti.nextplayer.core.database.dao
+package mazentas.doki.videoplayer.database.dao
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumStateEntity
+import mazentas.doki.videoplayer.database.entities.MediumStateEntity
 import kotlinx.coroutines.flow.Flow
 
 @Dao

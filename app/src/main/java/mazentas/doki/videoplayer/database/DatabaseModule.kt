@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.database
+package mazentas.doki.videoplayer.database
 
 import android.content.Context
 import androidx.room.Room

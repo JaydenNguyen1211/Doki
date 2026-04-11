@@ -1,12 +1,12 @@
-package dev.anilbeesetti.nextplayer.core.domain
+package mazentas.doki.videoplayer.domain
 
 import android.content.Context
 import android.net.Uri
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.anilbeesetti.nextplayer.core.common.extensions.getPath
-import dev.anilbeesetti.nextplayer.core.data.repository.PreferencesRepository
-import dev.anilbeesetti.nextplayer.core.model.MediaViewMode
-import dev.anilbeesetti.nextplayer.core.model.Video
+import mazentas.doki.videoplayer.common.extensions.getPath
+import mazentas.doki.videoplayer.data.repository.PreferencesRepository
+import mazentas.doki.videoplayer.model.MediaViewMode
+import mazentas.doki.videoplayer.model.Video
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.withContext

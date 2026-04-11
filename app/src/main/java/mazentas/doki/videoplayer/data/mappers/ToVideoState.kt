@@ -1,8 +1,8 @@
-package dev.anilbeesetti.nextplayer.core.data.mappers
+package mazentas.doki.videoplayer.data.mappers
 
-import dev.anilbeesetti.nextplayer.core.data.models.VideoState
-import dev.anilbeesetti.nextplayer.core.database.converter.UriListConverter
-import dev.anilbeesetti.nextplayer.core.database.entities.MediumStateEntity
+import mazentas.doki.videoplayer.data.models.VideoState
+import mazentas.doki.videoplayer.database.converter.UriListConverter
+import mazentas.doki.videoplayer.database.entities.MediumStateEntity
 
 fun MediumStateEntity.toVideoState(): VideoState {
     return VideoState(

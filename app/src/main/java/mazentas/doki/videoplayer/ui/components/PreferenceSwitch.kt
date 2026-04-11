@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.ui.components
+package mazentas.doki.videoplayer.ui.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector

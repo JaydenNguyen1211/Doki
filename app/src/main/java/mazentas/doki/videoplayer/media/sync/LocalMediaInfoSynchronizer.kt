@@ -1,4 +1,4 @@
-package dev.anilbeesetti.nextplayer.core.media.sync
+package mazentas.doki.videoplayer.media.sync
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -7,12 +7,12 @@ import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.util.Log
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.anilbeesetti.nextplayer.core.common.di.ApplicationScope
-import dev.anilbeesetti.nextplayer.core.common.extensions.thumbnailCacheDir
-import dev.anilbeesetti.nextplayer.core.database.dao.MediumDao
-import dev.anilbeesetti.nextplayer.core.database.entities.AudioStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.SubtitleStreamInfoEntity
-import dev.anilbeesetti.nextplayer.core.database.entities.VideoStreamInfoEntity
+import mazentas.doki.videoplayer.common.di.ApplicationScope
+import mazentas.doki.videoplayer.common.extensions.thumbnailCacheDir
+import mazentas.doki.videoplayer.database.dao.MediumDao
+import mazentas.doki.videoplayer.database.entities.AudioStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.SubtitleStreamInfoEntity
+import mazentas.doki.videoplayer.database.entities.VideoStreamInfoEntity
 import io.github.anilbeesetti.nextlib.mediainfo.AudioStream
 import io.github.anilbeesetti.nextlib.mediainfo.MediaInfoBuilder
 import io.github.anilbeesetti.nextlib.mediainfo.SubtitleStream
