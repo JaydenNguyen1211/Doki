@@ -80,6 +80,7 @@ import mazentas.doki.videoplayer.ui.components.CancelButton
 import mazentas.doki.videoplayer.ui.components.DoneButton
 import mazentas.doki.videoplayer.ui.components.NextDialog
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
+import mazentas.doki.videoplayer.ui.composables.PermissionMissingView
 import mazentas.doki.videoplayer.ui.designsystem.NextIcons
 import mazentas.doki.videoplayer.ui.extensions.copy
 import mazentas.doki.videoplayer.ui.preview.DayNightPreview
@@ -406,17 +407,6 @@ internal fun MediaPickerScreen(
             onCancel = { showDeleteVideosConfirmation = false },
         )
     }
-}
-
-@Composable
-fun PermissionMissingView(
-    isGranted: Boolean,
-    showRationale: Boolean,
-    permission: String,
-    launchPermissionRequest: () -> Unit,
-    content: @Composable () -> Unit
-) {
-    TODO("Not yet implemented")
 }
 
 @Composable

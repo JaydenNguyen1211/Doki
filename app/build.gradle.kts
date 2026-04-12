@@ -90,6 +90,10 @@ dependencies {
     //Navigation
     implementation(libs.androidx.navigation.compose)
 
+    //About
+
+    implementation(libs.aboutlibraries.compose)
+
     //Coil, Acompanist
     implementation(libs.coil.kt.compose)
     implementation(libs.accompanist.permissions)
