@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "972013709777",
+    "project_id": "dokiplayer-2a886",
+    "storage_bucket": "dokiplayer-2a886.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:972013709777:android:3ab92f9e3c89b168e318f0",
+        "android_client_info": {
+          "package_name": "mazentas.doki.videoplayer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTpT9M5XuBs0FXLFRkTD03W8KLC4TAxgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
