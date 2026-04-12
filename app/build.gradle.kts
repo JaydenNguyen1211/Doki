@@ -48,8 +48,12 @@ android {
 }
 
 dependencies {
+    //Hilt
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+
     ksp(libs.kotlin.metadata.jvm)
     implementation(libs.github.albfernandez.juniversalchardet)
     implementation(libs.androidx.core.ktx)
@@ -63,8 +67,15 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.material.iconsExtended)
+    implementation(libs.google.android.material)
+
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.lifecycle.viewModel.ktx)
 
 
+    implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.kotlinx.coroutines.guava)
 
     implementation(libs.androidx.lifecycle.runtimeCompose)
 
@@ -76,8 +87,24 @@ dependencies {
     implementation(libs.androidx.datastore.core)
     implementation(libs.timber)
 
+    //Navigation
+    implementation(libs.androidx.navigation.compose)
+
+    //Coil, Acompanist
+    implementation(libs.coil.kt.compose)
+    implementation(libs.accompanist.permissions)
+
     //Media
     implementation(libs.github.anilbeesetti.nextlib.mediainfo)
+    implementation(libs.androidx.media3.common)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.dash)
+    implementation(libs.androidx.media3.exoplayer.hls)
+    implementation(libs.androidx.media3.exoplayer.rtsp)
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.ui.compose)
+    implementation(libs.androidx.media3.session)
+    implementation(libs.github.anilbeesetti.nextlib.media3ext)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

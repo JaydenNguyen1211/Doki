@@ -6,5 +6,10 @@
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="postSplashScreenTheme">@style/Theme.SmartVideoPlayer</item>
     </style>
+    <style name="DokiPlayer" parent="android:Theme.Material.NoActionBar">
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:colorBackground">@android:color/black</item>
+    </style>
     <style name="Theme.SmartVideoPlayer" parent="android:Theme.Material.Light.NoActionBar" />
 </resources>
