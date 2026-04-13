@@ -7,7 +7,7 @@ import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @Composable
 fun NextSwitch(
@@ -15,7 +15,7 @@ fun NextSwitch(
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    checkedIcon: ImageVector = NextIcons.Check,
+    checkedIcon: ImageVector = DokiIcons.Check,
 ) {
     val thumbContent: (@Composable () -> Unit)? = if (checked) {
         {

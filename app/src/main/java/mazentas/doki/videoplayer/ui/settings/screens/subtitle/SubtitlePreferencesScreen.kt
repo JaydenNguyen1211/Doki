@@ -44,7 +44,7 @@ import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitchWithDivider
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.settings.composables.OptionsDialog
 import mazentas.doki.videoplayer.ui.settings.extensions.name
 import mazentas.doki.videoplayer.ui.settings.utils.LocalesHelper
@@ -69,7 +69,7 @@ fun SubtitlePreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -94,7 +94,7 @@ fun SubtitlePreferencesScreen(
                     title = stringResource(id = R.string.preferred_subtitle_lang),
                     description = LocalesHelper.getLocaleDisplayLanguage(preferences.preferredSubtitleLanguage)
                         .takeIf { it.isNotBlank() } ?: stringResource(R.string.preferred_subtitle_lang_description),
-                    icon = NextIcons.Language,
+                    icon = DokiIcons.Language,
                     onClick = { viewModel.showDialog(SubtitlePreferenceDialog.SubtitleLanguageDialog) },
                     index = 0,
                     count = totalRows,
@@ -102,7 +102,7 @@ fun SubtitlePreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(R.string.subtitle_text_encoding),
                     description = charsetResource.first { it.contains(preferences.subtitleTextEncoding) },
-                    icon = NextIcons.Subtitle,
+                    icon = DokiIcons.Subtitle,
                     onClick = { viewModel.showDialog(SubtitlePreferenceDialog.SubtitleEncodingDialog) },
                     index = 1,
                     count = totalRows,
@@ -116,7 +116,7 @@ fun SubtitlePreferencesScreen(
                 PreferenceSwitchWithDivider(
                     title = stringResource(R.string.system_caption_style),
                     description = stringResource(R.string.system_caption_style_desc),
-                    icon = NextIcons.Caption,
+                    icon = DokiIcons.Caption,
                     isChecked = preferences.useSystemCaptionStyle,
                     onChecked = viewModel::toggleUseSystemCaptionStyle,
                     onClick = { context.startActivity(Intent(Settings.ACTION_CAPTIONING_SETTINGS)) },
@@ -126,7 +126,7 @@ fun SubtitlePreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.subtitle_font),
                     description = preferences.subtitleFont.name(),
-                    icon = NextIcons.Font,
+                    icon = DokiIcons.Font,
                     enabled = preferences.useSystemCaptionStyle.not(),
                     onClick = { viewModel.showDialog(SubtitlePreferenceDialog.SubtitleFontDialog) },
                     index = 1,
@@ -135,7 +135,7 @@ fun SubtitlePreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.subtitle_text_bold),
                     description = stringResource(id = R.string.subtitle_text_bold_desc),
-                    icon = NextIcons.Bold,
+                    icon = DokiIcons.Bold,
                     enabled = preferences.useSystemCaptionStyle.not(),
                     isChecked = preferences.subtitleTextBold,
                     onClick = viewModel::toggleSubtitleTextBold,
@@ -145,7 +145,7 @@ fun SubtitlePreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.subtitle_text_size),
                     description = preferences.subtitleTextSize.toString(),
-                    icon = NextIcons.FontSize,
+                    icon = DokiIcons.FontSize,
                     enabled = preferences.useSystemCaptionStyle.not(),
                     onClick = { viewModel.showDialog(SubtitlePreferenceDialog.SubtitleSizeDialog) },
                     index = 3,
@@ -154,7 +154,7 @@ fun SubtitlePreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.subtitle_background),
                     description = stringResource(id = R.string.subtitle_background_desc),
-                    icon = NextIcons.Background,
+                    icon = DokiIcons.Background,
                     enabled = preferences.useSystemCaptionStyle.not(),
                     isChecked = preferences.subtitleBackground,
                     onClick = viewModel::toggleSubtitleBackground,
@@ -164,7 +164,7 @@ fun SubtitlePreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(R.string.embedded_styles),
                     description = stringResource(R.string.embedded_styles_desc),
-                    icon = NextIcons.Style,
+                    icon = DokiIcons.Style,
                     isChecked = preferences.applyEmbeddedStyles,
                     onClick = viewModel::toggleApplyEmbeddedStyles,
                     index = 5,

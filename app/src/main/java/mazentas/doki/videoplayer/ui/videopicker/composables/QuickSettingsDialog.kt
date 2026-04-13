@@ -46,7 +46,7 @@ import mazentas.doki.videoplayer.ui.components.CancelButton
 import mazentas.doki.videoplayer.ui.components.DoneButton
 import mazentas.doki.videoplayer.ui.components.NextDialog
 import mazentas.doki.videoplayer.ui.components.NextSwitch
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.videopicker.extensions.name
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
@@ -125,7 +125,7 @@ fun QuickSettingsDialog(
                             ),
                             icon = {
                                 Icon(
-                                    imageVector = if (sortOrder == Sort.Order.ASCENDING) NextIcons.ArrowUpward else NextIcons.ArrowDownward,
+                                    imageVector = if (sortOrder == Sort.Order.ASCENDING) DokiIcons.ArrowUpward else DokiIcons.ArrowDownward,
                                     contentDescription = stringResource(R.string.ascending),
                                     modifier = Modifier.size(FilterChipDefaults.IconSize),
                                 )
@@ -201,8 +201,8 @@ fun FieldChip(
     selected: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
-    selectedIcon: ImageVector = NextIcons.CheckBox,
-    unselectedIcon: ImageVector = NextIcons.CheckBoxOutline,
+    selectedIcon: ImageVector = DokiIcons.CheckBox,
+    unselectedIcon: ImageVector = DokiIcons.CheckBoxOutline,
 ) {
     FilterChip(
         selected = selected,
@@ -240,31 +240,31 @@ private fun SortOptions(
     ) {
         TextIconToggleButton(
             text = stringResource(id = R.string.title),
-            icon = NextIcons.Title,
+            icon = DokiIcons.Title,
             isSelected = selectedSortBy == Sort.By.TITLE,
             onClick = { onOptionSelected(Sort.By.TITLE) },
         )
         TextIconToggleButton(
             text = stringResource(id = R.string.duration),
-            icon = NextIcons.Length,
+            icon = DokiIcons.Length,
             isSelected = selectedSortBy == Sort.By.LENGTH,
             onClick = { onOptionSelected(Sort.By.LENGTH) },
         )
         TextIconToggleButton(
             text = stringResource(id = R.string.date),
-            icon = NextIcons.Calendar,
+            icon = DokiIcons.Calendar,
             isSelected = selectedSortBy == Sort.By.DATE,
             onClick = { onOptionSelected(Sort.By.DATE) },
         )
         TextIconToggleButton(
             text = stringResource(id = R.string.size),
-            icon = NextIcons.Size,
+            icon = DokiIcons.Size,
             isSelected = selectedSortBy == Sort.By.SIZE,
             onClick = { onOptionSelected(Sort.By.SIZE) },
         )
         TextIconToggleButton(
             text = stringResource(id = R.string.location),
-            icon = NextIcons.Location,
+            icon = DokiIcons.Location,
             isSelected = selectedSortBy == Sort.By.PATH,
             onClick = { onOptionSelected(Sort.By.PATH) },
         )

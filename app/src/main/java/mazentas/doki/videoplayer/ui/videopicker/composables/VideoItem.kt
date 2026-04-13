@@ -42,7 +42,7 @@ import mazentas.doki.videoplayer.model.ApplicationPreferences
 import mazentas.doki.videoplayer.model.MediaLayoutMode
 import mazentas.doki.videoplayer.model.Video
 import mazentas.doki.videoplayer.ui.components.NextSegmentedListItem
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.theme.DokiPlayerTheme
 
 @Composable
@@ -222,7 +222,7 @@ private fun ThumbnailView(
             .aspectRatio(16f / 10f),
     ) {
         Icon(
-            imageVector = NextIcons.Video,
+            imageVector = DokiIcons.Video,
             contentDescription = null,
             tint = MaterialTheme.colorScheme.surfaceColorAtElevation(100.dp),
             modifier = Modifier

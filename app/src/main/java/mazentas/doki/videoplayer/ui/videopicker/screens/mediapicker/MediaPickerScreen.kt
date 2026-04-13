@@ -81,7 +81,7 @@ import mazentas.doki.videoplayer.ui.components.DoneButton
 import mazentas.doki.videoplayer.ui.components.NextDialog
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.composables.PermissionMissingView
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.extensions.copy
 import mazentas.doki.videoplayer.ui.preview.DayNightPreview
 import mazentas.doki.videoplayer.ui.preview.VideoPickerPreviewParameterProvider
@@ -161,7 +161,7 @@ internal fun MediaPickerScreen(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
                             Icon(
-                                imageVector = NextIcons.Close,
+                                imageVector = DokiIcons.Close,
                                 contentDescription = stringResource(id = R.string.navigate_up),
                             )
                             Text(
@@ -172,7 +172,7 @@ internal fun MediaPickerScreen(
                     } else if (uiState.folderName != null) {
                         FilledTonalIconButton(onClick = onNavigateUp) {
                             Icon(
-                                imageVector = NextIcons.ArrowBack,
+                                imageVector = DokiIcons.ArrowBack,
                                 contentDescription = stringResource(id = R.string.navigate_up),
                             )
                         }
@@ -182,13 +182,13 @@ internal fun MediaPickerScreen(
                     if (selectionManager.isInSelectionMode) return@NextTopAppBar
                     IconButton(onClick = { showQuickSettingsDialog = true }) {
                         Icon(
-                            imageVector = NextIcons.DashBoard,
+                            imageVector = DokiIcons.DashBoard,
                             contentDescription = stringResource(id = R.string.menu),
                         )
                     }
                     IconButton(onClick = onSettingsClick) {
                         Icon(
-                            imageVector = NextIcons.Settings,
+                            imageVector = DokiIcons.Settings,
                             contentDescription = stringResource(id = R.string.settings),
                         )
                     }
@@ -243,7 +243,7 @@ internal fun MediaPickerScreen(
                     ) {
                         val icon by remember {
                             derivedStateOf {
-                                if (checkedProgress > 0.5f) NextIcons.Close else NextIcons.Play
+                                if (checkedProgress > 0.5f) DokiIcons.Close else DokiIcons.Play
                             }
                         }
                         Icon(
@@ -261,7 +261,7 @@ internal fun MediaPickerScreen(
                     },
                     icon = {
                         Icon(
-                            imageVector = NextIcons.Link,
+                            imageVector = DokiIcons.Link,
                             contentDescription = null,
                         )
                     },
@@ -276,7 +276,7 @@ internal fun MediaPickerScreen(
                     },
                     icon = {
                         Icon(
-                            imageVector = NextIcons.FileOpen,
+                            imageVector = DokiIcons.FileOpen,
                             contentDescription = null,
                         )
                     },
@@ -293,7 +293,7 @@ internal fun MediaPickerScreen(
                     },
                     icon = {
                         Icon(
-                            imageVector = NextIcons.History,
+                            imageVector = DokiIcons.History,
                             contentDescription = null,
                         )
                     },
@@ -527,31 +527,31 @@ private fun SelectionActionsSheet(
                 horizontalArrangement = Arrangement.SpaceEvenly,
             ) {
                 SelectionAction(
-                    imageVector = NextIcons.Play,
+                    imageVector = DokiIcons.Play,
                     title = stringResource(R.string.play),
                     onClick = onPlayAction,
                 )
                 if (showRenameAction) {
                     SelectionAction(
-                        imageVector = NextIcons.Edit,
+                        imageVector = DokiIcons.Edit,
                         title = stringResource(R.string.rename),
                         onClick = onRenameAction,
                     )
                 }
                 SelectionAction(
-                    imageVector = NextIcons.Share,
+                    imageVector = DokiIcons.Share,
                     title = stringResource(R.string.share),
                     onClick = onShareAction,
                 )
                 if (showInfoAction) {
                     SelectionAction(
-                        imageVector = NextIcons.Info,
+                        imageVector = DokiIcons.Info,
                         title = stringResource(id = R.string.info),
                         onClick = onInfoAction,
                     )
                 }
                 SelectionAction(
-                    imageVector = NextIcons.Delete,
+                    imageVector = DokiIcons.Delete,
                     title = stringResource(id = R.string.delete),
                     onClick = onDeleteAction,
                 )
@@ -644,7 +644,7 @@ private fun ButtonPreview() {
     Surface {
         TextIconToggleButton(
             text = "Title",
-            icon = NextIcons.Title,
+            icon = DokiIcons.Title,
             onClick = {},
         )
     }

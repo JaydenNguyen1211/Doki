@@ -28,7 +28,7 @@ import mazentas.doki.videoplayer.ui.components.ListSectionTitle
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.settings.composables.OptionsDialog
 import mazentas.doki.videoplayer.ui.settings.utils.LocalesHelper
 
@@ -49,7 +49,7 @@ fun AudioPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -74,7 +74,7 @@ fun AudioPreferencesScreen(
                     title = stringResource(id = R.string.preferred_audio_lang),
                     description = LocalesHelper.getLocaleDisplayLanguage(preferences.preferredAudioLanguage)
                         .takeIf { it.isNotBlank() } ?: stringResource(R.string.preferred_audio_lang_description),
-                    icon = NextIcons.Language,
+                    icon = DokiIcons.Language,
                     onClick = { viewModel.showDialog(AudioPreferenceDialog.AudioLanguageDialog) },
                     index = 0,
                     count = totalRows,
@@ -82,7 +82,7 @@ fun AudioPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(R.string.require_audio_focus),
                     description = stringResource(R.string.require_audio_focus_desc),
-                    icon = NextIcons.Focus,
+                    icon = DokiIcons.Focus,
                     isChecked = preferences.requireAudioFocus,
                     onClick = viewModel::toggleRequireAudioFocus,
                     index = 1,
@@ -91,7 +91,7 @@ fun AudioPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.pause_on_headset_disconnect),
                     description = stringResource(id = R.string.pause_on_headset_disconnect_desc),
-                    icon = NextIcons.HeadsetOff,
+                    icon = DokiIcons.HeadsetOff,
                     isChecked = preferences.pauseOnHeadsetDisconnect,
                     onClick = viewModel::togglePauseOnHeadsetDisconnect,
                     index = 2,
@@ -100,7 +100,7 @@ fun AudioPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.system_volume_panel),
                     description = stringResource(id = R.string.system_volume_panel_desc),
-                    icon = NextIcons.Headset,
+                    icon = DokiIcons.Headset,
                     isChecked = preferences.showSystemVolumePanel,
                     onClick = viewModel::toggleShowSystemVolumePanel,
                     index = 3,

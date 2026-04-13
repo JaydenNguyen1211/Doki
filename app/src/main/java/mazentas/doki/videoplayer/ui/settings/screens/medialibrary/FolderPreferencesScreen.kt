@@ -27,7 +27,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.SelectablePreference
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.extensions.plus
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -46,7 +46,7 @@ fun FolderPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }

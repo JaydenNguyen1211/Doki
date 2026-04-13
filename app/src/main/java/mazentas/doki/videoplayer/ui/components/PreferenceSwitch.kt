@@ -3,7 +3,7 @@ package mazentas.doki.videoplayer.ui.components
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @Composable
 fun PreferenceSwitch(
@@ -40,7 +40,7 @@ fun PreferenceSwitchPreview() {
     PreferenceSwitch(
         title = "Title",
         description = "Description of the preference item goes here.",
-        icon = NextIcons.DoubleTap,
+        icon = DokiIcons.DoubleTap,
         onClick = {},
     )
 }

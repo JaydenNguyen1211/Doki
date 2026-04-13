@@ -42,7 +42,7 @@ import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitchWithDivider
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.settings.composables.OptionsDialog
 import mazentas.doki.videoplayer.ui.settings.extensions.name
 
@@ -62,7 +62,7 @@ fun PlayerPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -86,7 +86,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.seek_gesture),
                     description = stringResource(id = R.string.seek_gesture_description),
-                    icon = NextIcons.SwipeHorizontal,
+                    icon = DokiIcons.SwipeHorizontal,
                     isChecked = preferences.useSeekControls,
                     onClick = viewModel::toggleUseSeekControls,
                     index = 0,
@@ -95,7 +95,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.swipe_gesture),
                     description = stringResource(id = R.string.swipe_gesture_description),
-                    icon = NextIcons.SwipeVertical,
+                    icon = DokiIcons.SwipeVertical,
                     isChecked = preferences.useSwipeControls,
                     onClick = viewModel::toggleUseSwipeControls,
                     index = 1,
@@ -104,7 +104,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.zoom_gesture),
                     description = stringResource(id = R.string.zoom_gesture_description),
-                    icon = NextIcons.Pinch,
+                    icon = DokiIcons.Pinch,
                     isChecked = preferences.useZoomControls,
                     onClick = viewModel::toggleUseZoomControls,
                     index = 2,
@@ -113,7 +113,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitchWithDivider(
                     title = stringResource(id = R.string.double_tap),
                     description = stringResource(id = R.string.double_tap_description),
-                    icon = NextIcons.DoubleTap,
+                    icon = DokiIcons.DoubleTap,
                     isChecked = (preferences.doubleTapGesture != DoubleTapGesture.NONE),
                     onChecked = viewModel::toggleDoubleTapGesture,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.DoubleTapDialog) },
@@ -123,7 +123,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitchWithDivider(
                     title = stringResource(id = R.string.long_press_gesture),
                     description = stringResource(id = R.string.long_press_gesture_desc, preferences.longPressControlsSpeed),
-                    icon = NextIcons.Tap,
+                    icon = DokiIcons.Tap,
                     isChecked = preferences.useLongPressControls,
                     onChecked = viewModel::toggleUseLongPressControls,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.LongPressControlsSpeedDialog) },
@@ -133,7 +133,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(R.string.seek_increment),
                     description = stringResource(R.string.seconds, preferences.seekIncrement),
-                    icon = NextIcons.Replay,
+                    icon = DokiIcons.Replay,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.SeekIncrementDialog) },
                     index = 5,
                     count = totalRows,
@@ -141,7 +141,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(R.string.controller_timeout),
                     description = stringResource(R.string.seconds, preferences.controllerAutoHideTimeout),
-                    icon = NextIcons.Timer,
+                    icon = DokiIcons.Timer,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControllerTimeoutDialog) },
                     index = 6,
                     count = totalRows,
@@ -149,7 +149,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.control_buttons_alignment),
                     description = preferences.controlButtonsPosition.name(),
-                    icon = NextIcons.ButtonsPosition,
+                    icon = DokiIcons.ButtonsPosition,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControlButtonsDialog) },
                     index = 7,
                     count = totalRows,
@@ -163,7 +163,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.resume),
                     description = stringResource(id = R.string.resume_description),
-                    icon = NextIcons.Resume,
+                    icon = DokiIcons.Resume,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.ResumeDialog) },
                     index = 0,
                     count = totalRows,
@@ -171,7 +171,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.default_playback_speed),
                     description = preferences.defaultPlaybackSpeed.toString(),
-                    icon = NextIcons.Speed,
+                    icon = DokiIcons.Speed,
                     onClick = { viewModel.showDialog(PlayerPreferenceDialog.PlaybackSpeedDialog) },
                     index = 1,
                     count = totalRows,
@@ -181,7 +181,7 @@ fun PlayerPreferencesScreen(
                     description = stringResource(
                         id = R.string.autoplay_settings_description,
                     ),
-                    icon = NextIcons.Player,
+                    icon = DokiIcons.Player,
                     isChecked = preferences.autoplay,
                     onClick = viewModel::toggleAutoplay,
                     index = 2,
@@ -192,7 +192,7 @@ fun PlayerPreferencesScreen(
                     description = stringResource(
                         id = R.string.pip_settings_description,
                     ),
-                    icon = NextIcons.Pip,
+                    icon = DokiIcons.Pip,
                     isChecked = preferences.autoPip,
                     onClick = viewModel::toggleAutoPip,
                     index = 3,
@@ -203,7 +203,7 @@ fun PlayerPreferencesScreen(
                     description = stringResource(
                         id = R.string.background_play_description,
                     ),
-                    icon = NextIcons.Headset,
+                    icon = DokiIcons.Headset,
                     isChecked = preferences.autoBackgroundPlay,
                     onClick = viewModel::toggleAutoBackgroundPlay,
                     index = 4,
@@ -214,7 +214,7 @@ fun PlayerPreferencesScreen(
                     description = stringResource(
                         id = R.string.remember_brightness_level_description,
                     ),
-                    icon = NextIcons.Brightness,
+                    icon = DokiIcons.Brightness,
                     isChecked = preferences.rememberPlayerBrightness,
                     onClick = viewModel::toggleRememberBrightnessLevel,
                     index = 5,
@@ -223,7 +223,7 @@ fun PlayerPreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(id = R.string.remember_selections),
                     description = stringResource(id = R.string.remember_selections_description),
-                    icon = NextIcons.Selection,
+                    icon = DokiIcons.Selection,
                     isChecked = preferences.rememberSelections,
                     onClick = viewModel::toggleRememberSelections,
                     index = 6,
@@ -232,7 +232,7 @@ fun PlayerPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.player_screen_orientation),
                     description = preferences.playerScreenOrientation.name(),
-                    icon = NextIcons.Rotation,
+                    icon = DokiIcons.Rotation,
                     onClick = {
                         viewModel.showDialog(PlayerPreferenceDialog.PlayerScreenOrientationDialog)
                     },

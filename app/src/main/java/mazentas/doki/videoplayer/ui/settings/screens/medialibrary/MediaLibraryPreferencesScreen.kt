@@ -25,7 +25,7 @@ import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
 import mazentas.doki.videoplayer.ui.components.ListSectionTitle
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -43,7 +43,7 @@ fun MediaLibraryPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -68,7 +68,7 @@ fun MediaLibraryPreferencesScreen(
                     description = stringResource(
                         id = R.string.mark_last_played_media_desc,
                     ),
-                    icon = NextIcons.Check,
+                    icon = DokiIcons.Check,
                     isChecked = preferences.markLastPlayedMedia,
                     onClick = viewModel::toggleMarkLastPlayedMedia,
                     index = 0,
@@ -79,7 +79,7 @@ fun MediaLibraryPreferencesScreen(
                     description = stringResource(
                         id = R.string.floating_play_button_desc,
                     ),
-                    icon = NextIcons.SmartButton,
+                    icon = DokiIcons.SmartButton,
                     isChecked = preferences.showFloatingPlayButton,
                     onClick = viewModel::toggleShowFloatingPlayButton,
                     index = 1,
@@ -94,7 +94,7 @@ fun MediaLibraryPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(id = R.string.manage_folders),
                     description = stringResource(id = R.string.manage_folders_desc),
-                    icon = NextIcons.FolderOff,
+                    icon = DokiIcons.FolderOff,
                     onClick = onFolderSettingClick,
                 )
             }
@@ -109,7 +109,7 @@ fun HideFoldersSettings(
     ClickablePreferenceItem(
         title = stringResource(id = R.string.manage_folders),
         description = stringResource(id = R.string.manage_folders_desc),
-        icon = NextIcons.FolderOff,
+        icon = DokiIcons.FolderOff,
         onClick = onClick,
     )
 }
@@ -124,7 +124,7 @@ fun MarkLastPlayedMediaSetting(
         description = stringResource(
             id = R.string.mark_last_played_media_desc,
         ),
-        icon = NextIcons.Check,
+        icon = DokiIcons.Check,
         isChecked = isChecked,
         onClick = onClick,
     )
@@ -140,7 +140,7 @@ fun FloatingPlayButtonSetting(
         description = stringResource(
             id = R.string.floating_play_button_desc,
         ),
-        icon = NextIcons.SmartButton,
+        icon = DokiIcons.SmartButton,
         isChecked = isChecked,
         onClick = onClick,
     )

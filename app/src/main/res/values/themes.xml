@@ -3,7 +3,7 @@
 
     <style name="Theme.SmartVideoPlayer.Splash" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/white</item>
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/img_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.SmartVideoPlayer</item>
     </style>
     <style name="DokiPlayer" parent="android:Theme.Material.NoActionBar">

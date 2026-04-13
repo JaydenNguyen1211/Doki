@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -40,7 +40,7 @@ private fun ClickablePreferenceItemPreview() {
     ClickablePreferenceItem(
         title = "Title",
         description = "Description of the preference item goes here.",
-        icon = NextIcons.DoubleTap,
+        icon = DokiIcons.DoubleTap,
         onClick = {},
         enabled = false,
     )

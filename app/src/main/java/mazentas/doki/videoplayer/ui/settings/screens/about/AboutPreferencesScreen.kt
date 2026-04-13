@@ -61,7 +61,7 @@ import mazentas.doki.videoplayer.common.extensions.appIcon
 import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
 import mazentas.doki.videoplayer.ui.components.ListSectionTitle
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import kotlinx.coroutines.launch
 import mazentas.doki.videoplayer.R
 
@@ -88,7 +88,7 @@ fun AboutPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }

@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @Composable
 fun PreferenceSwitchWithDivider(
@@ -63,7 +63,7 @@ fun PreferenceSwitchWithDividerPreview() {
     PreferenceSwitchWithDivider(
         title = "Title",
         description = "Description of the preference items goes here.",
-        icon = NextIcons.DoubleTap,
+        icon = DokiIcons.DoubleTap,
         onClick = {},
         onChecked = {},
     )

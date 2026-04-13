@@ -32,7 +32,7 @@ import com.mikepenz.aboutlibraries.util.withContext
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.components.NextSegmentedListItem
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.extensions.plus
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -50,7 +50,7 @@ fun LibrariesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }

@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -116,7 +116,7 @@ fun PreferenceItemPreview() {
     PreferenceItem(
         title = "Title",
         description = "Description of the preference item goes here.",
-        icon = NextIcons.DoubleTap,
+        icon = DokiIcons.DoubleTap,
         enabled = true,
     )
 }

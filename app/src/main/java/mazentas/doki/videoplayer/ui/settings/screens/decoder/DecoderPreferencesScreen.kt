@@ -27,7 +27,7 @@ import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
 import mazentas.doki.videoplayer.ui.components.ListSectionTitle
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.settings.composables.OptionsDialog
 import mazentas.doki.videoplayer.ui.settings.extensions.name
 
@@ -47,7 +47,7 @@ fun DecoderPreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -70,7 +70,7 @@ fun DecoderPreferencesScreen(
                 ClickablePreferenceItem(
                     title = stringResource(R.string.decoder_priority),
                     description = preferences.decoderPriority.name(),
-                    icon = NextIcons.Priority,
+                    icon = DokiIcons.Priority,
                     onClick = { viewModel.showDialog(DecoderPreferenceDialog.DecoderPriorityDialog) },
                 )
             }

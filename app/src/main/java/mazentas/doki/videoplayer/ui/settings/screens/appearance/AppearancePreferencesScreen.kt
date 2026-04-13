@@ -28,7 +28,7 @@ import mazentas.doki.videoplayer.ui.components.NextTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitchWithDivider
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.settings.composables.OptionsDialog
 import mazentas.doki.videoplayer.ui.settings.extensions.name
 import mazentas.doki.videoplayer.ui.theme.supportsDynamicTheming
@@ -50,7 +50,7 @@ fun AppearancePreferencesScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -76,7 +76,7 @@ fun AppearancePreferencesScreen(
                     description = preferences.themeConfig.name(),
                     isChecked = preferences.themeConfig == ThemeConfig.ON,
                     onChecked = viewModel::toggleDarkTheme,
-                    icon = NextIcons.DarkMode,
+                    icon = DokiIcons.DarkMode,
                     onClick = { viewModel.showDialog(AppearancePreferenceDialog.Theme) },
                     index = 0,
                     count = totalRows,
@@ -84,7 +84,7 @@ fun AppearancePreferencesScreen(
                 PreferenceSwitch(
                     title = stringResource(R.string.high_contrast_dark_theme),
                     description = stringResource(R.string.high_contrast_dark_theme_desc),
-                    icon = NextIcons.Contrast,
+                    icon = DokiIcons.Contrast,
                     isChecked = preferences.useHighContrastDarkTheme,
                     onClick = viewModel::toggleUseHighContrastDarkTheme,
                     index = 1,
@@ -94,7 +94,7 @@ fun AppearancePreferencesScreen(
                     PreferenceSwitch(
                         title = stringResource(id = R.string.dynamic_theme),
                         description = stringResource(id = R.string.dynamic_theme_description),
-                        icon = NextIcons.Appearance,
+                        icon = DokiIcons.Appearance,
                         isChecked = preferences.useDynamicColors,
                         onClick = viewModel::toggleUseDynamicColors,
                         index = 2,

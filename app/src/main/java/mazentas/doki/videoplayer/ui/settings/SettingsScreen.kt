@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
 import mazentas.doki.videoplayer.ui.components.NextTopAppBar
-import mazentas.doki.videoplayer.ui.designsystem.NextIcons
+import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
 @Composable
@@ -37,7 +37,7 @@ fun SettingsScreen(
                 navigationIcon = {
                     FilledTonalIconButton(onClick = onNavigateUp) {
                         Icon(
-                            imageVector = NextIcons.ArrowBack,
+                            imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
                         )
                     }
@@ -88,43 +88,43 @@ private enum class SettingRow(
     APPEARANCE(
         titleResId = R.string.appearance_name,
         descriptionResId = R.string.appearance_description,
-        icon = NextIcons.Appearance,
+        icon = DokiIcons.Appearance,
         setting = Setting.APPEARANCE,
     ),
     MEDIA_LIBRARY(
         titleResId = R.string.media_library,
         descriptionResId = R.string.media_library_description,
-        icon = NextIcons.Movie,
+        icon = DokiIcons.Movie,
         setting = Setting.MEDIA_LIBRARY,
     ),
     PLAYER(
         titleResId = R.string.player_name,
         descriptionResId = R.string.player_description,
-        icon = NextIcons.Player,
+        icon = DokiIcons.Player,
         setting = Setting.PLAYER,
     ),
     DECODER(
         titleResId = R.string.decoder,
         descriptionResId = R.string.decoder_desc,
-        icon = NextIcons.Decoder,
+        icon = DokiIcons.Decoder,
         setting = Setting.DECODER,
     ),
     AUDIO(
         titleResId = R.string.audio,
         descriptionResId = R.string.audio_desc,
-        icon = NextIcons.Audio,
+        icon = DokiIcons.Audio,
         setting = Setting.AUDIO,
     ),
     SUBTITLE(
         titleResId = R.string.subtitle,
         descriptionResId = R.string.subtitle_desc,
-        icon = NextIcons.Subtitle,
+        icon = DokiIcons.Subtitle,
         setting = Setting.SUBTITLE,
     ),
     ABOUT(
         titleResId = R.string.about_name,
         descriptionResId = R.string.about_description,
-        icon = NextIcons.Info,
+        icon = DokiIcons.Info,
         setting = Setting.ABOUT,
     ),
 }
