@@ -89,8 +89,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             DokiPlayerTheme (
                 darkTheme = shouldUseDarkTheme(uiState = uiState),
-                highContrastDarkTheme = shouldUseHighContrastDarkTheme(uiState = uiState),
-                dynamicColor = shouldUseDynamicTheming(uiState = uiState),
             ) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),

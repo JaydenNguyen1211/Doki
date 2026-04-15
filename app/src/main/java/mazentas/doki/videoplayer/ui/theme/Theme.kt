@@ -247,21 +247,9 @@ private val highContrastDarkColorScheme = darkColorScheme(
 @Composable
 fun DokiPlayerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    highContrastDarkTheme: Boolean = false,
-    dynamicColor: Boolean = true,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
-        dynamicColor && supportsDynamicTheming() -> {
-            val context = LocalContext.current
-            when {
-                darkTheme && highContrastDarkTheme -> dynamicDarkColorScheme(context).copy(background = Color.Black, surface = Color.Black)
-                darkTheme -> dynamicDarkColorScheme(context)
-                else -> dynamicLightColorScheme(context)
-            }
-        }
-
-        darkTheme && highContrastDarkTheme -> darkScheme.copy(background = Color.Black, surface = Color.Black)
         darkTheme -> darkScheme
         else -> lightScheme
     }

@@ -9,7 +9,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledTonalIconButton
+import mazentas.doki.videoplayer.ui.designsystem.DokiIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +25,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
 import mazentas.doki.videoplayer.ui.components.ListSectionTitle
-import mazentas.doki.videoplayer.ui.components.NextTopAppBar
+import mazentas.doki.videoplayer.ui.components.DokiTopAppBar
 import mazentas.doki.videoplayer.ui.components.PreferenceSwitch
 import mazentas.doki.videoplayer.ui.components.RadioTextButton
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
@@ -44,10 +44,10 @@ fun AudioPreferencesScreen(
 
     Scaffold(
         topBar = {
-            NextTopAppBar(
+            DokiTopAppBar(
                 title = stringResource(id = R.string.audio),
                 navigationIcon = {
-                    FilledTonalIconButton(onClick = onNavigateUp) {
+                    DokiIconButton(onClick = onNavigateUp) {
                         Icon(
                             imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),

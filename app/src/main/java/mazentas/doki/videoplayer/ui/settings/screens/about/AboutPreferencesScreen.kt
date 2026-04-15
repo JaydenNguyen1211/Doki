@@ -1,6 +1,5 @@
 package mazentas.doki.videoplayer.ui.settings.screens.about
 
-import android.content.ClipData
 import android.content.Context
 import android.os.Build
 import android.widget.Toast
@@ -13,24 +12,17 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledTonalIconButton
+import mazentas.doki.videoplayer.ui.designsystem.DokiIconButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -46,24 +38,19 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.ClipEntry
 import androidx.compose.ui.platform.LocalClipboard
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.platform.UriHandler
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import mazentas.doki.videoplayer.common.extensions.appIcon
-import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
-import mazentas.doki.videoplayer.ui.components.ListSectionTitle
-import mazentas.doki.videoplayer.ui.components.NextTopAppBar
+import mazentas.doki.videoplayer.ui.components.DokiTopAppBar
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
-import kotlinx.coroutines.launch
 import mazentas.doki.videoplayer.R
+import mazentas.doki.videoplayer.ui.theme.DokiPlayerTheme
 
 private const val GITHUB_URL = "https://github.com/anilbeesetti/nextplayer"
 private const val KOFI_URL = "https://ko-fi.com/anilbeesetti"
@@ -83,10 +70,10 @@ fun AboutPreferencesScreen(
 
     Scaffold(
         topBar = {
-            NextTopAppBar(
+            DokiTopAppBar(
                 title = stringResource(id = R.string.about_name),
                 navigationIcon = {
-                    FilledTonalIconButton(onClick = onNavigateUp) {
+                    DokiIconButton(onClick = onNavigateUp) {
                         Icon(
                             imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
@@ -113,51 +100,7 @@ fun AboutPreferencesScreen(
                 },
                 onLibrariesClick = onLibrariesClick,
             )
-            ListSectionTitle(text = stringResource(id = R.string.donate))
-            Column(
-                verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap),
-            ) {
-                val totalRows = 3
-                ClickablePreferenceItem(
-                    title = stringResource(R.string.kofi),
-                    description = stringResource(R.string.support_the_developer_on, stringResource(R.string.kofi)),
-                    icon = ImageVector.vectorResource(R.drawable.ic_kofi),
-                    onClick = {
-                        uriHandler.openUriOrShowToast(
-                            uri = KOFI_URL,
-                            context = context,
-                        )
-                    },
-                    index = 0,
-                    count = totalRows,
-                )
-                ClickablePreferenceItem(
-                    title = stringResource(R.string.paypal),
-                    description = stringResource(R.string.support_the_developer_on, stringResource(R.string.paypal)),
-                    icon = ImageVector.vectorResource(R.drawable.ic_paypal),
-                    onClick = {
-                        uriHandler.openUriOrShowToast(
-                            uri = PAYPAL_URL,
-                            context = context,
-                        )
-                    },
-                    index = 1,
-                    count = totalRows,
-                )
-                ClickablePreferenceItem(
-                    title = stringResource(R.string.upi),
-                    description = UPI_ID,
-                    icon = ImageVector.vectorResource(R.drawable.ic_upi),
-                    onClick = {
-                        scope.launch {
-                            clipboard.setClipEntry(ClipEntry(ClipData.newPlainText("text", UPI_ID)))
-                            Toast.makeText(context, "copied to clipboard", Toast.LENGTH_SHORT).show()
-                        }
-                    },
-                    index = 2,
-                    count = totalRows,
-                )
-            }
+
         }
     }
 }
@@ -254,49 +197,6 @@ fun AboutApp(
             }
         }
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            Button(
-                onClick = onLibrariesClick,
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                    disabledContentColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = .12f),
-                    containerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.8f),
-                    disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = .12f),
-                ),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(52.dp)
-                    .weight(1f),
-            ) {
-                Text(text = stringResource(R.string.libraries))
-            }
-            Button(
-                onClick = onGithubClick,
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = MaterialTheme.colorScheme.onTertiary,
-                    disabledContentColor = MaterialTheme.colorScheme.onTertiary.copy(alpha = .12f),
-                    containerColor = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.8f),
-                    disabledContainerColor = MaterialTheme.colorScheme.tertiary.copy(alpha = .12f),
-                ),
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f)
-                    .height(52.dp),
-            ) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_github),
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp),
-                )
-                Spacer(modifier = Modifier.width(8.dp))
-                Text(text = stringResource(R.string.github))
-            }
-        }
     }
 }
 
@@ -318,5 +218,14 @@ internal fun UriHandler.openUriOrShowToast(uri: String, context: Context) {
         openUri(uri = uri)
     } catch (e: Exception) {
         Toast.makeText(context, context.getString(R.string.error_opening_link), Toast.LENGTH_SHORT).show()
+    }
+}
+
+
+@Preview
+@Composable
+fun AboutUsPreview() {
+    DokiPlayerTheme() {
+        AboutPreferencesScreen({}) { }
     }
 }

@@ -45,7 +45,7 @@ import mazentas.doki.videoplayer.model.Sort
 import mazentas.doki.videoplayer.ui.components.CancelButton
 import mazentas.doki.videoplayer.ui.components.DoneButton
 import mazentas.doki.videoplayer.ui.components.NextDialog
-import mazentas.doki.videoplayer.ui.components.NextSwitch
+import mazentas.doki.videoplayer.ui.components.DokiSwitch
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.videopicker.extensions.name
 
@@ -137,48 +137,6 @@ fun QuickSettingsDialog(
                 }
                 HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
                 DialogSectionTitle(text = stringResource(R.string.fields))
-                FlowRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .wrapContentHeight(align = Alignment.Top),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    FieldChip(
-                        label = stringResource(id = R.string.duration),
-                        selected = preferences.showDurationField,
-                        onClick = { preferences = preferences.copy(showDurationField = !preferences.showDurationField) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.extension),
-                        selected = preferences.showExtensionField,
-                        onClick = { preferences = preferences.copy(showExtensionField = !preferences.showExtensionField) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.path),
-                        selected = preferences.showPathField,
-                        onClick = { preferences = preferences.copy(showPathField = !preferences.showPathField) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.played_progress),
-                        selected = preferences.showPlayedProgress,
-                        onClick = { preferences = preferences.copy(showPlayedProgress = !preferences.showPlayedProgress) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.resolution),
-                        selected = preferences.showResolutionField,
-                        onClick = { preferences = preferences.copy(showResolutionField = !preferences.showResolutionField) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.size),
-                        selected = preferences.showSizeField,
-                        onClick = { preferences = preferences.copy(showSizeField = !preferences.showSizeField) },
-                    )
-                    FieldChip(
-                        label = stringResource(id = R.string.thumbnail),
-                        selected = preferences.showThumbnailField,
-                        onClick = { preferences = preferences.copy(showThumbnailField = !preferences.showThumbnailField) },
-                    )
-                }
             }
         },
         confirmButton = {
@@ -305,7 +263,7 @@ fun DialogPreferenceSwitch(
             maxLines = 1,
             style = MaterialTheme.typography.titleMedium,
         )
-        NextSwitch(
+        DokiSwitch(
             checked = isChecked,
             onCheckedChange = null,
             modifier = Modifier.padding(start = 20.dp),

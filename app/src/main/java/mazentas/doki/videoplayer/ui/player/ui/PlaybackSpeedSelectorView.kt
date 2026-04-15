@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilledTonalIconButton
+import mazentas.doki.videoplayer.ui.designsystem.DokiIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LocalContentColor
@@ -35,7 +35,7 @@ import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.common.extensions.round
-import mazentas.doki.videoplayer.ui.components.NextSwitch
+import mazentas.doki.videoplayer.ui.components.DokiSwitch
 import mazentas.doki.videoplayer.ui.player.state.rememberPlaybackParametersState
 
 @OptIn(UnstableApi::class)
@@ -61,7 +61,7 @@ fun BoxScope.PlaybackSpeedSelectorView(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            FilledTonalIconButton(
+            DokiIconButton (
                 onClick = {
                     val newSpeed =
                         (playbackParametersState.speed - stepSize).coerceAtLeast(minValue)
@@ -81,7 +81,7 @@ fun BoxScope.PlaybackSpeedSelectorView(
                 modifier = Modifier.weight(1f),
             )
 
-            FilledTonalIconButton(
+            DokiIconButton(
                 onClick = {
                     val newSpeed = (playbackParametersState.speed + stepSize).coerceAtMost(maxValue)
                     playbackParametersState.setPlaybackSpeed(newSpeed)
@@ -164,7 +164,7 @@ fun BoxScope.PlaybackSpeedSelectorView(
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier.weight(1f),
             )
-            NextSwitch(
+            DokiSwitch(
                 checked = playbackParametersState.skipSilenceEnabled,
                 onCheckedChange = null,
             )

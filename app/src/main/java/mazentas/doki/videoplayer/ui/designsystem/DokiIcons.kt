@@ -5,6 +5,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.CompareArrows
 import androidx.compose.material.icons.automirrored.outlined.VolumeUp
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.outlined.AppSettingsAlt
 import androidx.compose.material.icons.outlined.ArrowDownward
 import androidx.compose.material.icons.outlined.ArrowUpward
@@ -65,6 +67,12 @@ import androidx.compose.material.icons.outlined.Title
 import androidx.compose.material.icons.outlined.TouchApp
 import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.material.icons.outlined.Update
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 
 object DokiIcons {
     val Appearance = Icons.Outlined.Palette
@@ -129,4 +137,16 @@ object DokiIcons {
     val ButtonsPosition = Icons.Outlined.AppSettingsAlt
     val Close = Icons.Outlined.Close
     val History = Icons.Outlined.History
+    val Option = Icons.Filled.MoreVert
+    val Setting = Icons.Filled.Settings
+}
+
+@Composable
+fun DokiIconButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    colorsz: IconButtonColors = IconButtonDefaults.iconButtonColors(containerColor = Color.Transparent),
+    content: @Composable () -> Unit
+) {
+    IconButton(onClick = onClick, colors =  colorsz, content =  content)
 }

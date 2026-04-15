@@ -25,7 +25,7 @@ fun PreferenceSwitch(
         index = index,
         count = count,
         trailingContent = {
-            NextSwitch(
+            DokiSwitch(
                 checked = isChecked,
                 onCheckedChange = null,
                 enabled = enabled,

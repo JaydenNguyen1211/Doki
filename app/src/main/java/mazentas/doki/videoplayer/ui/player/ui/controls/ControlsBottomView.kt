@@ -1,5 +1,6 @@
 package mazentas.doki.videoplayer.ui.player.ui.controls
 
+import android.util.Log
 import androidx.annotation.OptIn
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -53,6 +54,7 @@ import mazentas.doki.videoplayer.ui.player.state.MediaPresentationState
 import mazentas.doki.videoplayer.ui.player.state.durationFormatted
 import mazentas.doki.videoplayer.ui.player.state.pendingPositionFormatted
 import mazentas.doki.videoplayer.ui.player.state.positionFormatted
+import mazentas.doki.videoplayer.ui.theme.primaryLight
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -187,7 +189,8 @@ private fun PlayerSeekbar(
     onSeek: (Float) -> Unit,
     onSeekFinished: () -> Unit,
 ) {
-    val primaryColor = MaterialTheme.colorScheme.primary
+    val primaryColor = primaryLight
+    Log.d("testColor ", "PlayerSeekbar: color ${primaryColor.value.toString()} ")
     val interactionSource = remember { MutableInteractionSource() }
     val trackHeight = 10.dp
     val thumbWidth = 4.dp

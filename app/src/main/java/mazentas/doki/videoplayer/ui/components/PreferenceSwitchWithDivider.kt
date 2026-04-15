@@ -47,7 +47,7 @@ fun PreferenceSwitchWithDivider(
                         .height(40.dp),
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.3f),
                 )
-                NextSwitch(
+                DokiSwitch(
                     checked = isChecked,
                     onCheckedChange = { onChecked() },
                     enabled = enabled,

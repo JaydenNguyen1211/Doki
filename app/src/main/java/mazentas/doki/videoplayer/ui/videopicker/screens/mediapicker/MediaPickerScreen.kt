@@ -1,6 +1,8 @@
 package mazentas.doki.videoplayer.ui.videopicker.screens.mediapicker
 
+import android.annotation.SuppressLint
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -11,6 +13,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -24,9 +27,13 @@ import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledTonalIconButton
+import mazentas.doki.videoplayer.ui.designsystem.DokiIconButton
 import androidx.compose.material3.FloatingActionButtonMenu
 import androidx.compose.material3.FloatingActionButtonMenuItem
 import androidx.compose.material3.Icon
@@ -42,6 +49,7 @@ import androidx.compose.material3.ToggleFloatingActionButtonDefaults.animateIcon
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -52,6 +60,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -77,9 +86,10 @@ import mazentas.doki.videoplayer.model.MediaViewMode
 import mazentas.doki.videoplayer.model.Video
 import mazentas.doki.videoplayer.ui.base.DataState
 import mazentas.doki.videoplayer.ui.components.CancelButton
+import mazentas.doki.videoplayer.ui.components.DokiBottomBar
 import mazentas.doki.videoplayer.ui.components.DoneButton
 import mazentas.doki.videoplayer.ui.components.NextDialog
-import mazentas.doki.videoplayer.ui.components.NextTopAppBar
+import mazentas.doki.videoplayer.ui.components.DokiTopAppBar
 import mazentas.doki.videoplayer.ui.composables.PermissionMissingView
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 import mazentas.doki.videoplayer.ui.extensions.copy
@@ -96,6 +106,7 @@ import mazentas.doki.videoplayer.ui.videopicker.composables.RenameDialog
 import mazentas.doki.videoplayer.ui.videopicker.composables.TextIconToggleButton
 import mazentas.doki.videoplayer.ui.videopicker.composables.VideoInfoDialog
 import mazentas.doki.videoplayer.ui.videopicker.rememberSelectionManager
+import kotlin.math.log
 
 @Composable
 fun MediaPickerRoute(
@@ -117,6 +128,7 @@ fun MediaPickerRoute(
     )
 }
 
+@SuppressLint("RememberReturnType")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class, ExperimentalPermissionsApi::class)
 @Composable
 internal fun MediaPickerScreen(
@@ -138,14 +150,14 @@ internal fun MediaPickerScreen(
     var isFabExpanded by rememberSaveable { mutableStateOf(false) }
     var showQuickSettingsDialog by rememberSaveable { mutableStateOf(false) }
     var showUrlDialog by rememberSaveable { mutableStateOf(false) }
-
+    var dropdownMenuExpanded by rememberSaveable { mutableStateOf(false) }
     var showRenameActionFor: Video? by rememberSaveable { mutableStateOf(null) }
     var showInfoActionFor: Video? by rememberSaveable { mutableStateOf(null) }
     var showDeleteVideosConfirmation by rememberSaveable { mutableStateOf(false) }
 
     Scaffold(
         topBar = {
-            NextTopAppBar(
+            DokiTopAppBar(
                 title = (uiState.folderName ?: stringResource(R.string.app_name)).takeIf { !selectionManager.isInSelectionMode } ?: "",
                 fontWeight = FontWeight.Bold.takeIf { uiState.folderName == null },
                 navigationIcon = {
@@ -170,7 +182,7 @@ internal fun MediaPickerScreen(
                             )
                         }
                     } else if (uiState.folderName != null) {
-                        FilledTonalIconButton(onClick = onNavigateUp) {
+                        DokiIconButton(onClick = onNavigateUp) {
                             Icon(
                                 imageVector = DokiIcons.ArrowBack,
                                 contentDescription = stringResource(id = R.string.navigate_up),
@@ -179,128 +191,127 @@ internal fun MediaPickerScreen(
                     }
                 },
                 actions = {
-                    if (selectionManager.isInSelectionMode) return@NextTopAppBar
-                    IconButton(onClick = { showQuickSettingsDialog = true }) {
-                        Icon(
-                            imageVector = DokiIcons.DashBoard,
-                            contentDescription = stringResource(id = R.string.menu),
-                        )
+                    if (selectionManager.isInSelectionMode) return@DokiTopAppBar
+
+                    Box {
+                        IconButton(onClick = {
+                            dropdownMenuExpanded = !dropdownMenuExpanded
+                        }) {
+                            Icon(
+                                imageVector = DokiIcons.Option,
+                                contentDescription = stringResource(id = R.string.settings),
+                            )
+                        }
+                        DropdownMenu(
+                            expanded = dropdownMenuExpanded,
+                            onDismissRequest = {
+                                dropdownMenuExpanded = false
+                            }
+                        ) {
+                            val context = LocalContext.current
+                            DropdownMenuItem(
+                                text = { Text(context.resources.getString(R.string.settings)) },
+                                leadingIcon = {
+                                    Icon( DokiIcons.Settings, "")
+                                },
+                                onClick = {
+                                    // Handle item click
+                                    onSettingsClick()
+                                    dropdownMenuExpanded = false
+                                    Log.d("TestMenu", "MediaPickerScreen: Clicke Setting")
+                                }
+                            )
+
+                            DropdownMenuItem(
+                                text = { Text(context.resources.getString(R.string.quick_settings)) },
+                                leadingIcon = {
+                                    Icon(DokiIcons.DashBoard, "")
+                                },
+                                onClick = {
+                                    // Handle item click
+                                    showQuickSettingsDialog = true
+                                    dropdownMenuExpanded = false
+                                    Log.d("TestMenu", "MediaPickerScreen: Clicke Setting")
+                                }
+                            )
+
+                            DropdownMenuItem(
+                                onClick = {
+                                    dropdownMenuExpanded = false
+                                    selectVideoFileLauncher.launch("video/*")
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        imageVector = DokiIcons.FileOpen,
+                                        contentDescription = null,
+                                    )
+                                },
+                                text = {
+                                    Text(text = stringResource(id = R.string.open_local_video))
+                                },
+                            )
+                            DropdownMenuItem(
+                                onClick = {
+                                    dropdownMenuExpanded = false
+                                    val folder = (uiState.mediaDataState as? DataState.Success)?.value ?: return@DropdownMenuItem
+                                    val videoToPlay = folder.recentlyPlayedVideo ?: folder.firstVideo ?: return@DropdownMenuItem
+                                    onPlayVideos(listOf(videoToPlay.uriString.toUri()))
+                                },
+                                leadingIcon = {
+                                    Icon(
+                                        imageVector = DokiIcons.History,
+                                        contentDescription = null,
+                                    )
+                                },
+                                text = {
+                                    Text(text = stringResource(id = R.string.recently_played))
+                                },
+                            )
+                        }
                     }
-                    IconButton(onClick = onSettingsClick) {
-                        Icon(
-                            imageVector = DokiIcons.Settings,
-                            contentDescription = stringResource(id = R.string.settings),
-                        )
-                    }
+
                 },
             )
         },
         bottomBar = {
-            SelectionActionsSheet(
-                show = selectionManager.isInSelectionMode,
-                showRenameAction = selectionManager.isSingleVideoSelected,
-                showInfoAction = selectionManager.isSingleVideoSelected,
-                onPlayAction = {
-                    val videoUris = selectionManager.allSelectedVideos.map { it.uriString.toUri() }
-                    onPlayVideos(videoUris)
-                    selectionManager.clearSelection()
-                },
-                onRenameAction = {
-                    val selectedVideo = selectionManager.selectedVideos.firstOrNull() ?: return@SelectionActionsSheet
-                    val video = (uiState.mediaDataState as? DataState.Success)?.value?.mediaList
-                        ?.find { it.uriString == selectedVideo.uriString } ?: return@SelectionActionsSheet
-                    showRenameActionFor = video
-                },
-                onInfoAction = {
-                    val selectedVideo = selectionManager.selectedVideos.firstOrNull() ?: return@SelectionActionsSheet
-                    val video = (uiState.mediaDataState as? DataState.Success)?.value?.mediaList
-                        ?.find { it.uriString == selectedVideo.uriString } ?: return@SelectionActionsSheet
-                    showInfoActionFor = video
-                    selectionManager.clearSelection()
-                },
-                onShareAction = {
-                    onEvent(MediaPickerUiEvent.ShareVideos(selectionManager.allSelectedVideos.map { it.uriString }))
-                },
-                onDeleteAction = {
-                    if (MediaService.willSystemAsksForDeleteConfirmation()) {
-                        onEvent(MediaPickerUiEvent.DeleteVideos(selectionManager.allSelectedVideos.map { it.uriString }))
-                    } else {
-                        showDeleteVideosConfirmation = true
-                    }
-                },
-            )
-        },
-        floatingActionButton = {
-            if (!uiState.preferences.showFloatingPlayButton) return@Scaffold
-            if (selectionManager.isInSelectionMode) return@Scaffold
-
-            FloatingActionButtonMenu(
-                expanded = isFabExpanded,
-                button = {
-                    ToggleFloatingActionButton(
-                        checked = isFabExpanded,
-                        onCheckedChange = { isFabExpanded = !isFabExpanded },
-                    ) {
-                        val icon by remember {
-                            derivedStateOf {
-                                if (checkedProgress > 0.5f) DokiIcons.Close else DokiIcons.Play
-                            }
+            if (selectionManager.isInSelectionMode) {
+                SelectionActionsSheet(
+                    show = selectionManager.isInSelectionMode,
+                    showRenameAction = selectionManager.isSingleVideoSelected,
+                    showInfoAction = selectionManager.isSingleVideoSelected,
+                    onPlayAction = {
+                        val videoUris = selectionManager.allSelectedVideos.map { it.uriString.toUri() }
+                        onPlayVideos(videoUris)
+                        selectionManager.clearSelection()
+                    },
+                    onRenameAction = {
+                        val selectedVideo = selectionManager.selectedVideos.firstOrNull() ?: return@SelectionActionsSheet
+                        val video = (uiState.mediaDataState as? DataState.Success)?.value?.mediaList
+                            ?.find { it.uriString == selectedVideo.uriString } ?: return@SelectionActionsSheet
+                        showRenameActionFor = video
+                    },
+                    onInfoAction = {
+                        val selectedVideo = selectionManager.selectedVideos.firstOrNull() ?: return@SelectionActionsSheet
+                        val video = (uiState.mediaDataState as? DataState.Success)?.value?.mediaList
+                            ?.find { it.uriString == selectedVideo.uriString } ?: return@SelectionActionsSheet
+                        showInfoActionFor = video
+                        selectionManager.clearSelection()
+                    },
+                    onShareAction = {
+                        onEvent(MediaPickerUiEvent.ShareVideos(selectionManager.allSelectedVideos.map { it.uriString }))
+                    },
+                    onDeleteAction = {
+                        if (MediaService.willSystemAsksForDeleteConfirmation()) {
+                            onEvent(MediaPickerUiEvent.DeleteVideos(selectionManager.allSelectedVideos.map { it.uriString }))
+                        } else {
+                            showDeleteVideosConfirmation = true
                         }
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                            modifier = Modifier.animateIcon(checkedProgress = { checkedProgress }),
-                        )
-                    }
-                },
-            ) {
-                FloatingActionButtonMenuItem(
-                    onClick = {
-                        isFabExpanded = false
-                        showUrlDialog = true
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = DokiIcons.Link,
-                            contentDescription = null,
-                        )
-                    },
-                    text = {
-                        Text(text = stringResource(id = R.string.open_network_stream))
                     },
                 )
-                FloatingActionButtonMenuItem(
-                    onClick = {
-                        isFabExpanded = false
-                        selectVideoFileLauncher.launch("video/*")
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = DokiIcons.FileOpen,
-                            contentDescription = null,
-                        )
-                    },
-                    text = {
-                        Text(text = stringResource(id = R.string.open_local_video))
-                    },
-                )
-                FloatingActionButtonMenuItem(
-                    onClick = {
-                        isFabExpanded = false
-                        val folder = (uiState.mediaDataState as? DataState.Success)?.value ?: return@FloatingActionButtonMenuItem
-                        val videoToPlay = folder.recentlyPlayedVideo ?: folder.firstVideo ?: return@FloatingActionButtonMenuItem
-                        onPlayVideos(listOf(videoToPlay.uriString.toUri()))
-                    },
-                    icon = {
-                        Icon(
-                            imageVector = DokiIcons.History,
-                            contentDescription = null,
-                        )
-                    },
-                    text = {
-                        Text(text = stringResource(id = R.string.recently_played))
-                    },
-                )
+            } else {
+                DokiBottomBar(uiState.preferences) {
+                    onEvent(MediaPickerUiEvent.UpdateMenu(it))
+                }
             }
         },
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -407,6 +418,13 @@ internal fun MediaPickerScreen(
             onCancel = { showDeleteVideosConfirmation = false },
         )
     }
+}
+
+
+@Composable
+fun showDropdownMenu(expanded: Boolean, onDismiss: () -> Unit) {
+
+
 }
 
 @Composable

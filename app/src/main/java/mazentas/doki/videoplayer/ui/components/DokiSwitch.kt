@@ -1,39 +1,23 @@
 package mazentas.doki.videoplayer.ui.components
 
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @Composable
-fun NextSwitch(
+fun DokiSwitch(
     checked: Boolean,
     onCheckedChange: ((Boolean) -> Unit)?,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     checkedIcon: ImageVector = DokiIcons.Check,
 ) {
-    val thumbContent: (@Composable () -> Unit)? = if (checked) {
-        {
-            Icon(
-                imageVector = checkedIcon,
-                contentDescription = null,
-                modifier = Modifier.size(SwitchDefaults.IconSize),
-            )
-        }
-    } else {
-        null
-    }
-
     Switch(
         checked = checked,
         onCheckedChange = onCheckedChange,
         modifier = modifier,
         enabled = enabled,
-        thumbContent = thumbContent,
     )
 }

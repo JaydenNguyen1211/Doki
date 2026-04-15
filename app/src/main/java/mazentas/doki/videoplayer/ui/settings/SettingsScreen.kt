@@ -8,8 +8,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.ListItemDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -21,7 +21,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.components.ClickablePreferenceItem
-import mazentas.doki.videoplayer.ui.components.NextTopAppBar
+import mazentas.doki.videoplayer.ui.components.DokiTopAppBar
 import mazentas.doki.videoplayer.ui.designsystem.DokiIcons
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
@@ -32,10 +32,10 @@ fun SettingsScreen(
 ) {
     Scaffold(
         topBar = {
-            NextTopAppBar(
+            DokiTopAppBar(
                 title = stringResource(id = R.string.settings),
                 navigationIcon = {
-                    FilledTonalIconButton(onClick = onNavigateUp) {
+                   IconButton(onClick = onNavigateUp) {
                         Icon(
                             imageVector = DokiIcons.ArrowBack,
                             contentDescription = stringResource(id = R.string.navigate_up),
