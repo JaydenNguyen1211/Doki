@@ -24,7 +24,9 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
@@ -82,7 +84,7 @@ fun PlayerPreferencesScreen(
             Column(
                 verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap),
             ) {
-                val totalRows = 8
+                val totalRows = 6
                 PreferenceSwitch(
                     title = stringResource(id = R.string.seek_gesture),
                     description = stringResource(id = R.string.seek_gesture_description),
@@ -138,44 +140,37 @@ fun PlayerPreferencesScreen(
                     index = 5,
                     count = totalRows,
                 )
-                ClickablePreferenceItem(
-                    title = stringResource(R.string.controller_timeout),
-                    description = stringResource(R.string.seconds, preferences.controllerAutoHideTimeout),
-                    icon = DokiIcons.Timer,
-                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControllerTimeoutDialog) },
-                    index = 6,
-                    count = totalRows,
-                )
-                ClickablePreferenceItem(
-                    title = stringResource(id = R.string.control_buttons_alignment),
-                    description = preferences.controlButtonsPosition.name(),
-                    icon = DokiIcons.ButtonsPosition,
-                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControlButtonsDialog) },
-                    index = 7,
-                    count = totalRows,
-                )
+//                ClickablePreferenceItem(
+//                    title = stringResource(R.string.controller_timeout),
+//                    description = stringResource(R.string.seconds, preferences.controllerAutoHideTimeout),
+//                    icon = DokiIcons.Timer,
+//                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControllerTimeoutDialog) },
+//                    index = 6,
+//                    count = totalRows,
+//                )
+//                ClickablePreferenceItem(
+//                    title = stringResource(id = R.string.control_buttons_alignment),
+//                    description = preferences.controlButtonsPosition.name(),
+//                    icon = DokiIcons.ButtonsPosition,
+//                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ControlButtonsDialog) },
+//                    index = 7,
+//                    count = totalRows,
+//                )
             }
             ListSectionTitle(text = stringResource(id = R.string.playback))
             Column(
                 verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap),
             ) {
-                val totalRows = 8
-                ClickablePreferenceItem(
-                    title = stringResource(id = R.string.resume),
-                    description = stringResource(id = R.string.resume_description),
-                    icon = DokiIcons.Resume,
-                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ResumeDialog) },
-                    index = 0,
-                    count = totalRows,
-                )
-                ClickablePreferenceItem(
-                    title = stringResource(id = R.string.default_playback_speed),
-                    description = preferences.defaultPlaybackSpeed.toString(),
-                    icon = DokiIcons.Speed,
-                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.PlaybackSpeedDialog) },
-                    index = 1,
-                    count = totalRows,
-                )
+                val totalRows = 6
+//                ClickablePreferenceItem(
+//                    title = stringResource(id = R.string.resume),
+//                    description = stringResource(id = R.string.resume_description),
+//                    icon = DokiIcons.Resume,
+//                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.ResumeDialog) },
+//                    index = 0,
+//                    count = totalRows,
+//                )
+
                 PreferenceSwitch(
                     title = stringResource(id = R.string.autoplay_settings),
                     description = stringResource(
@@ -185,6 +180,26 @@ fun PlayerPreferencesScreen(
                     isChecked = preferences.autoplay,
                     onClick = viewModel::toggleAutoplay,
                     index = 2,
+                    count = totalRows,
+                )
+                PreferenceSwitch(
+                    title = stringResource(id = R.string.remember_brightness_level),
+                    description = stringResource(
+                        id = R.string.remember_brightness_level_description,
+                    ),
+                    icon = ImageVector.vectorResource(R.drawable.ic_brightness),
+                    isChecked = preferences.rememberPlayerBrightness,
+                    onClick = viewModel::toggleRememberBrightnessLevel,
+                    index = 5,
+                    count = totalRows,
+                )
+                PreferenceSwitch(
+                    title = stringResource(id = R.string.remember_selections),
+                    description = stringResource(id = R.string.remember_selections_description),
+                    icon = DokiIcons.Selection,
+                    isChecked = preferences.rememberSelections,
+                    onClick = viewModel::toggleRememberSelections,
+                    index = 6,
                     count = totalRows,
                 )
                 PreferenceSwitch(
@@ -209,36 +224,24 @@ fun PlayerPreferencesScreen(
                     index = 4,
                     count = totalRows,
                 )
-                PreferenceSwitch(
-                    title = stringResource(id = R.string.remember_brightness_level),
-                    description = stringResource(
-                        id = R.string.remember_brightness_level_description,
-                    ),
-                    icon = DokiIcons.Brightness,
-                    isChecked = preferences.rememberPlayerBrightness,
-                    onClick = viewModel::toggleRememberBrightnessLevel,
-                    index = 5,
-                    count = totalRows,
-                )
-                PreferenceSwitch(
-                    title = stringResource(id = R.string.remember_selections),
-                    description = stringResource(id = R.string.remember_selections_description),
-                    icon = DokiIcons.Selection,
-                    isChecked = preferences.rememberSelections,
-                    onClick = viewModel::toggleRememberSelections,
-                    index = 6,
-                    count = totalRows,
-                )
                 ClickablePreferenceItem(
-                    title = stringResource(id = R.string.player_screen_orientation),
-                    description = preferences.playerScreenOrientation.name(),
-                    icon = DokiIcons.Rotation,
-                    onClick = {
-                        viewModel.showDialog(PlayerPreferenceDialog.PlayerScreenOrientationDialog)
-                    },
-                    index = 7,
+                    title = stringResource(id = R.string.default_playback_speed),
+                    description = preferences.defaultPlaybackSpeed.toString(),
+                    icon = ImageVector.vectorResource(R.drawable.ic_speed),
+                    onClick = { viewModel.showDialog(PlayerPreferenceDialog.PlaybackSpeedDialog) },
+                    index = 1,
                     count = totalRows,
                 )
+//                ClickablePreferenceItem(
+//                    title = stringResource(id = R.string.player_screen_orientation),
+//                    description = preferences.playerScreenOrientation.name(),
+//                    icon = DokiIcons.Rotation,
+//                    onClick = {
+//                        viewModel.showDialog(PlayerPreferenceDialog.PlayerScreenOrientationDialog)
+//                    },
+//                    index = 7,
+//                    count = totalRows,
+//                )
             }
         }
 

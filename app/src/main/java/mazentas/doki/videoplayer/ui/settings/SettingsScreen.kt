@@ -91,18 +91,6 @@ private enum class SettingRow(
         icon = DokiIcons.Appearance,
         setting = Setting.APPEARANCE,
     ),
-    MEDIA_LIBRARY(
-        titleResId = R.string.media_library,
-        descriptionResId = R.string.media_library_description,
-        icon = DokiIcons.Movie,
-        setting = Setting.MEDIA_LIBRARY,
-    ),
-    PLAYER(
-        titleResId = R.string.player_name,
-        descriptionResId = R.string.player_description,
-        icon = DokiIcons.Player,
-        setting = Setting.PLAYER,
-    ),
     DECODER(
         titleResId = R.string.decoder,
         descriptionResId = R.string.decoder_desc,
@@ -115,16 +103,28 @@ private enum class SettingRow(
         icon = DokiIcons.Audio,
         setting = Setting.AUDIO,
     ),
-    SUBTITLE(
-        titleResId = R.string.subtitle,
-        descriptionResId = R.string.subtitle_desc,
-        icon = DokiIcons.Subtitle,
-        setting = Setting.SUBTITLE,
-    ),
     ABOUT(
         titleResId = R.string.about_name,
         descriptionResId = R.string.about_description,
         icon = DokiIcons.Info,
         setting = Setting.ABOUT,
     ),
+    MEDIA_LIBRARY(
+        titleResId = R.string.media_library,
+        descriptionResId = R.string.media_library_description,
+        icon = DokiIcons.Movie,
+        setting = Setting.MEDIA_LIBRARY,
+    ),
+    PLAYER(
+        titleResId = R.string.player_name,
+        descriptionResId = R.string.player_description,
+        icon = DokiIcons.Player,
+        setting = Setting.PLAYER,
+    ),
+//    SUBTITLE(
+//        titleResId = R.string.subtitle,
+//        descriptionResId = R.string.subtitle_desc,
+//        icon = DokiIcons.Subtitle,
+//        setting = Setting.SUBTITLE,
+//    ),
 }

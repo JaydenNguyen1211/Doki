@@ -8,6 +8,7 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import mazentas.doki.videoplayer.ui.videopicker.screens.mediapicker.MediaPickerRoute
 import kotlinx.serialization.Serializable
+import mazentas.doki.videoplayer.ui.videopicker.screens.mediapicker.MediaFolderPickerRoute
 
 internal const val folderIdArg = "folderId"
 
@@ -21,12 +22,17 @@ data class MediaPickerRoute(
     val folderId: String? = null,
 )
 
-fun NavController.navigateToMediaPickerScreen(
+@Serializable
+data class MediaFolderPickerRoute(
+    val folderId: String? = null,
+)
+
+fun NavController.navigateToMediaFolderPickerScreen(
     folderId: String,
     navOptions: NavOptions? = null,
 ) {
     val encodedFolderId = Uri.encode(folderId)
-    this.navigate(MediaPickerRoute(encodedFolderId), navOptions)
+    this.navigate(MediaFolderPickerRoute(encodedFolderId), navOptions)
 }
 
 fun NavGraphBuilder.mediaPickerScreen(
@@ -41,6 +47,14 @@ fun NavGraphBuilder.mediaPickerScreen(
             onNavigateUp = onNavigateUp,
             onFolderClick = onFolderClick,
             onSettingsClick = onSettingsClick,
+        )
+    }
+
+    composable<MediaFolderPickerRoute> {
+        MediaFolderPickerRoute(
+            onPlayVideos = onPlayVideos,
+            onNavigateUp = onNavigateUp,
+            onFolderClick = onFolderClick,
         )
     }
 }

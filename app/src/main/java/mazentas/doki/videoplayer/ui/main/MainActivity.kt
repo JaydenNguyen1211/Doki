@@ -94,18 +94,18 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.surface,
                 ) {
-                    val storagePermissionState = rememberPermissionState(permission = storagePermission)
-
-                    LifecycleEventEffect(event = Lifecycle.Event.ON_START) {
-                        Timber.tag(TAG).d("onCreate: ${storagePermissionState.permission}")
-                        storagePermissionState.launchPermissionRequest()
-                    }
-
-                    LaunchedEffect(key1 = storagePermissionState.status.isGranted) {
-                        if (storagePermissionState.status.isGranted) {
-                            synchronizer.startSync()
-                        }
-                    }
+//                    val storagePermissionState = rememberPermissionState(permission = storagePermission)
+//
+//                    LifecycleEventEffect(event = Lifecycle.Event.ON_START) {
+//                        Timber.tag(TAG).d("onCreate: ${storagePermissionState.permission}")
+//                        storagePermissionState.launchPermissionRequest()
+//                    }
+//
+//                    LaunchedEffect(key1 = storagePermissionState.status.isGranted) {
+//                        if (storagePermissionState.status.isGranted) {
+//                            synchronizer.startSync()
+//                        }
+//                    }
 
                     val mainNavController = rememberNavController()
 

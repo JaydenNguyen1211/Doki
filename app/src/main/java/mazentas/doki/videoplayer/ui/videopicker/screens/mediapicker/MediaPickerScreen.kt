@@ -106,6 +106,7 @@ import mazentas.doki.videoplayer.ui.videopicker.composables.RenameDialog
 import mazentas.doki.videoplayer.ui.videopicker.composables.TextIconToggleButton
 import mazentas.doki.videoplayer.ui.videopicker.composables.VideoInfoDialog
 import mazentas.doki.videoplayer.ui.videopicker.rememberSelectionManager
+import mazentas.doki.videoplayer.ui.videopicker.screens.MediaFolderPickerScreen
 import kotlin.math.log
 
 @Composable
@@ -124,6 +125,24 @@ fun MediaPickerRoute(
         onNavigateUp = onNavigateUp,
         onFolderClick = onFolderClick,
         onSettingsClick = onSettingsClick,
+        onEvent = viewModel::onEvent,
+    )
+}
+
+@Composable
+fun MediaFolderPickerRoute(
+    viewModel: MediaPickerViewModel = hiltViewModel(),
+    onPlayVideos: (uris: List<Uri>) -> Unit,
+    onFolderClick: (folderPath: String) -> Unit,
+    onNavigateUp: () -> Unit,
+) {
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
+    MediaFolderPickerScreen(
+        uiState = uiState,
+        onPlayVideos = onPlayVideos,
+        onNavigateUp = onNavigateUp,
+        onFolderClick = onFolderClick,
         onEvent = viewModel::onEvent,
     )
 }
@@ -193,6 +212,23 @@ internal fun MediaPickerScreen(
                 actions = {
                     if (selectionManager.isInSelectionMode) return@DokiTopAppBar
 
+                    IconButton(onClick = {
+
+                        //Toggle list grid
+                        var pref = uiState.preferences
+                        if ( pref.mediaLayoutMode == MediaLayoutMode.LIST) {
+                           pref = pref.copy(mediaLayoutMode = MediaLayoutMode.GRID)
+                        } else {
+                            pref = pref.copy(mediaLayoutMode = MediaLayoutMode.LIST)
+                        }
+                        onEvent(MediaPickerUiEvent.UpdateMenu(pref))
+                    }) {
+                        Icon(
+                            imageVector = if (uiState.preferences.mediaLayoutMode == MediaLayoutMode.LIST) DokiIcons.List else DokiIcons.Grid ,
+                            contentDescription = stringResource(id = R.string.list),
+                        )
+                    }
+
                     Box {
                         IconButton(onClick = {
                             dropdownMenuExpanded = !dropdownMenuExpanded
@@ -223,9 +259,9 @@ internal fun MediaPickerScreen(
                             )
 
                             DropdownMenuItem(
-                                text = { Text(context.resources.getString(R.string.quick_settings)) },
+                                text = { Text(context.resources.getString(R.string.sort_settings)) },
                                 leadingIcon = {
-                                    Icon(DokiIcons.DashBoard, "")
+                                    Icon(DokiIcons.Sort, "")
                                 },
                                 onClick = {
                                     // Handle item click

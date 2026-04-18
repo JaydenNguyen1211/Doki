@@ -70,13 +70,13 @@ fun AudioPreferencesScreen(
                 verticalArrangement = Arrangement.spacedBy(ListItemDefaults.SegmentedGap),
             ) {
                 val totalRows = 4
-                ClickablePreferenceItem(
-                    title = stringResource(id = R.string.preferred_audio_lang),
-                    description = LocalesHelper.getLocaleDisplayLanguage(preferences.preferredAudioLanguage)
-                        .takeIf { it.isNotBlank() } ?: stringResource(R.string.preferred_audio_lang_description),
-                    icon = DokiIcons.Language,
-                    onClick = { viewModel.showDialog(AudioPreferenceDialog.AudioLanguageDialog) },
-                    index = 0,
+                PreferenceSwitch(
+                    title = stringResource(id = R.string.pause_on_headset_disconnect),
+                    description = stringResource(id = R.string.pause_on_headset_disconnect_desc),
+                    icon = DokiIcons.HeadsetOff,
+                    isChecked = preferences.pauseOnHeadsetDisconnect,
+                    onClick = viewModel::togglePauseOnHeadsetDisconnect,
+                    index = 2,
                     count = totalRows,
                 )
                 PreferenceSwitch(
@@ -89,15 +89,6 @@ fun AudioPreferencesScreen(
                     count = totalRows,
                 )
                 PreferenceSwitch(
-                    title = stringResource(id = R.string.pause_on_headset_disconnect),
-                    description = stringResource(id = R.string.pause_on_headset_disconnect_desc),
-                    icon = DokiIcons.HeadsetOff,
-                    isChecked = preferences.pauseOnHeadsetDisconnect,
-                    onClick = viewModel::togglePauseOnHeadsetDisconnect,
-                    index = 2,
-                    count = totalRows,
-                )
-                PreferenceSwitch(
                     title = stringResource(id = R.string.system_volume_panel),
                     description = stringResource(id = R.string.system_volume_panel_desc),
                     icon = DokiIcons.Headset,
@@ -106,6 +97,16 @@ fun AudioPreferencesScreen(
                     index = 3,
                     count = totalRows,
                 )
+                ClickablePreferenceItem(
+                    title = stringResource(id = R.string.preferred_audio_lang),
+                    description = LocalesHelper.getLocaleDisplayLanguage(preferences.preferredAudioLanguage)
+                        .takeIf { it.isNotBlank() } ?: stringResource(R.string.preferred_audio_lang_description),
+                    icon = DokiIcons.Language,
+                    onClick = { viewModel.showDialog(AudioPreferenceDialog.AudioLanguageDialog) },
+                    index = 0,
+                    count = totalRows,
+                )
+
             }
         }
 

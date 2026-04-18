@@ -15,20 +15,13 @@ fun PermissionMissingView(
 ) {
     if (isGranted) {
         content()
-    } else if (showRationale) {
+    } else  {
         PermissionRationaleDialog(
             text = stringResource(
                 id = R.string.permission_info,
                 permission,
             ),
             onConfirmButtonClick = launchPermissionRequest,
-        )
-    } else {
-        PermissionDetailView(
-            text = stringResource(
-                id = R.string.permission_settings,
-                permission,
-            ),
         )
     }
 }

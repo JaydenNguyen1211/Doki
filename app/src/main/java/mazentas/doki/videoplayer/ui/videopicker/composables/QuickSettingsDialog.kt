@@ -61,51 +61,51 @@ fun QuickSettingsDialog(
     NextDialog(
         onDismissRequest = onDismiss,
         title = {
-            Text(text = stringResource(R.string.quick_settings))
+            Text(text = stringResource(R.string.sort_settings))
         },
         content = {
-            HorizontalDivider()
+//            HorizontalDivider()
             Column(
                 modifier = Modifier.verticalScroll(rememberScrollState()),
             ) {
-                DialogSectionTitle(text = stringResource(R.string.media_view_mode))
-                SingleChoiceSegmentedButtonRow(
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    MediaViewMode.entries.forEachIndexed { index, viewMode ->
-                        SegmentedButton(
-                            selected = preferences.mediaViewMode == viewMode,
-                            onClick = { preferences = preferences.copy(mediaViewMode = viewMode) },
-                            shape = SegmentedButtonDefaults.itemShape(index = index, count = MediaViewMode.entries.size),
-                            colors = SegmentedButtonDefaults.colors(
-                                activeContentColor = MaterialTheme.colorScheme.primary,
-                                activeBorderColor = MaterialTheme.colorScheme.primary,
-                            ),
-                        ) {
-                            Text(text = viewMode.name())
-                        }
-                    }
-                }
-                DialogSectionTitle(text = stringResource(R.string.media_layout))
-                SingleChoiceSegmentedButtonRow(
-                    modifier = Modifier.fillMaxWidth(),
-                ) {
-                    MediaLayoutMode.entries.forEachIndexed { index, layoutMode ->
-                        SegmentedButton(
-                            selected = preferences.mediaLayoutMode == layoutMode,
-                            onClick = { preferences = preferences.copy(mediaLayoutMode = layoutMode) },
-                            shape = SegmentedButtonDefaults.itemShape(index = index, count = MediaLayoutMode.entries.size),
-                            colors = SegmentedButtonDefaults.colors(
-                                activeContentColor = MaterialTheme.colorScheme.primary,
-                                activeBorderColor = MaterialTheme.colorScheme.primary,
-                            ),
-                        ) {
-                            Text(text = layoutMode.name())
-                        }
-                    }
-                }
-                HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
-                DialogSectionTitle(text = stringResource(R.string.sort))
+//                DialogSectionTitle(text = stringResource(R.string.media_view_mode))
+//                SingleChoiceSegmentedButtonRow(
+//                    modifier = Modifier.fillMaxWidth(),
+//                ) {
+//                    MediaViewMode.entries.forEachIndexed { index, viewMode ->
+//                        SegmentedButton(
+//                            selected = preferences.mediaViewMode == viewMode,
+//                            onClick = { preferences = preferences.copy(mediaViewMode = viewMode) },
+//                            shape = SegmentedButtonDefaults.itemShape(index = index, count = MediaViewMode.entries.size),
+//                            colors = SegmentedButtonDefaults.colors(
+//                                activeContentColor = MaterialTheme.colorScheme.primary,
+//                                activeBorderColor = MaterialTheme.colorScheme.primary,
+//                            ),
+//                        ) {
+//                            Text(text = viewMode.name())
+//                        }
+//                    }
+//                }
+//                DialogSectionTitle(text = stringResource(R.string.media_layout))
+//                SingleChoiceSegmentedButtonRow(
+//                    modifier = Modifier.fillMaxWidth(),
+//                ) {
+//                    MediaLayoutMode.entries.forEachIndexed { index, layoutMode ->
+//                        SegmentedButton(
+//                            selected = preferences.mediaLayoutMode == layoutMode,
+//                            onClick = { preferences = preferences.copy(mediaLayoutMode = layoutMode) },
+//                            shape = SegmentedButtonDefaults.itemShape(index = index, count = MediaLayoutMode.entries.size),
+//                            colors = SegmentedButtonDefaults.colors(
+//                                activeContentColor = MaterialTheme.colorScheme.primary,
+//                                activeBorderColor = MaterialTheme.colorScheme.primary,
+//                            ),
+//                        ) {
+//                            Text(text = layoutMode.name())
+//                        }
+//                    }
+//                }
+//                HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
+//                DialogSectionTitle(text = stringResource(R.string.sort))
                 SortOptions(
                     selectedSortBy = preferences.sortBy,
                     onOptionSelected = { preferences = preferences.copy(sortBy = it) },
@@ -135,8 +135,8 @@ fun QuickSettingsDialog(
                         }
                     }
                 }
-                HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
-                DialogSectionTitle(text = stringResource(R.string.fields))
+//                HorizontalDivider(modifier = Modifier.padding(top = 16.dp))
+//                DialogSectionTitle(text = stringResource(R.string.fields))
             }
         },
         confirmButton = {
@@ -220,12 +220,12 @@ private fun SortOptions(
             isSelected = selectedSortBy == Sort.By.SIZE,
             onClick = { onOptionSelected(Sort.By.SIZE) },
         )
-        TextIconToggleButton(
-            text = stringResource(id = R.string.location),
-            icon = DokiIcons.Location,
-            isSelected = selectedSortBy == Sort.By.PATH,
-            onClick = { onOptionSelected(Sort.By.PATH) },
-        )
+//        TextIconToggleButton(
+//            text = stringResource(id = R.string.location),
+//            icon = DokiIcons.Location,
+//            isSelected = selectedSortBy == Sort.By.PATH,
+//            onClick = { onOptionSelected(Sort.By.PATH) },
+//        )
     }
 }
 

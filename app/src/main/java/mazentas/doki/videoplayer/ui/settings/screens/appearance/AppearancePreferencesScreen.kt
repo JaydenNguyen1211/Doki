@@ -81,26 +81,26 @@ fun AppearancePreferencesScreen(
                     index = 0,
                     count = totalRows,
                 )
-                PreferenceSwitch(
-                    title = stringResource(R.string.high_contrast_dark_theme),
-                    description = stringResource(R.string.high_contrast_dark_theme_desc),
-                    icon = DokiIcons.Contrast,
-                    isChecked = preferences.useHighContrastDarkTheme,
-                    onClick = viewModel::toggleUseHighContrastDarkTheme,
-                    index = 1,
-                    count = totalRows,
-                )
-                if (supportsDynamicTheming()) {
-                    PreferenceSwitch(
-                        title = stringResource(id = R.string.dynamic_theme),
-                        description = stringResource(id = R.string.dynamic_theme_description),
-                        icon = DokiIcons.Appearance,
-                        isChecked = preferences.useDynamicColors,
-                        onClick = viewModel::toggleUseDynamicColors,
-                        index = 2,
-                        count = totalRows,
-                    )
-                }
+//                PreferenceSwitch(
+//                    title = stringResource(R.string.high_contrast_dark_theme),
+//                    description = stringResource(R.string.high_contrast_dark_theme_desc),
+//                    icon = DokiIcons.Contrast,
+//                    isChecked = preferences.useHighContrastDarkTheme,
+//                    onClick = viewModel::toggleUseHighContrastDarkTheme,
+//                    index = 1,
+//                    count = totalRows,
+//                )
+//                if (supportsDynamicTheming()) {
+//                    PreferenceSwitch(
+//                        title = stringResource(id = R.string.dynamic_theme),
+//                        description = stringResource(id = R.string.dynamic_theme_description),
+//                        icon = DokiIcons.Appearance,
+//                        isChecked = preferences.useDynamicColors,
+//                        onClick = viewModel::toggleUseDynamicColors,
+//                        index = 2,
+//                        count = totalRows,
+//                    )
+//                }
             }
         }
 

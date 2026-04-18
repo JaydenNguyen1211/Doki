@@ -54,7 +54,7 @@ fun BoxScope.PlaybackSpeedSelectorView(
         title = stringResource(R.string.select_playback_speed),
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
-        val minValue = 0.2f
+        val minValue = 0.25f
         val maxValue = 4.0f
         val stepSize = 0.1f
         val steps = ((maxValue - minValue) / stepSize).toInt() - 1
@@ -119,7 +119,7 @@ fun BoxScope.PlaybackSpeedSelectorView(
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             listOf(
-                0.2f, 0.5f, 0.75f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f,
+                0.2f, 0.5f, 1.0f, 2.0f, 3.0f, 4.0f,
             ).forEach { speed ->
                 Box(
                     modifier = Modifier
@@ -146,28 +146,28 @@ fun BoxScope.PlaybackSpeedSelectorView(
             }
         }
 
-        Row(
-            modifier = Modifier
-                .clip(RoundedCornerShape(4.dp))
-                .toggleable(
-                    value = playbackParametersState.skipSilenceEnabled,
-                    onValueChange = { playbackParametersState.setIsSkipSilenceEnabled(it) },
-                )
-                .fillMaxWidth()
-                .padding(8.dp)
-                .semantics(mergeDescendants = true) {},
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(
-                text = stringResource(R.string.skip_silence),
-                style = MaterialTheme.typography.bodyLarge,
-                modifier = Modifier.weight(1f),
-            )
-            DokiSwitch(
-                checked = playbackParametersState.skipSilenceEnabled,
-                onCheckedChange = null,
-            )
-        }
+//        Row(
+//            modifier = Modifier
+//                .clip(RoundedCornerShape(4.dp))
+//                .toggleable(
+//                    value = playbackParametersState.skipSilenceEnabled,
+//                    onValueChange = { playbackParametersState.setIsSkipSilenceEnabled(it) },
+//                )
+//                .fillMaxWidth()
+//                .padding(8.dp)
+//                .semantics(mergeDescendants = true) {},
+//            verticalAlignment = Alignment.CenterVertically,
+//            horizontalArrangement = Arrangement.spacedBy(16.dp),
+//        ) {
+//            Text(
+//                text = stringResource(R.string.skip_silence),
+//                style = MaterialTheme.typography.bodyLarge,
+//                modifier = Modifier.weight(1f),
+//            )
+//            DokiSwitch(
+//                checked = playbackParametersState.skipSilenceEnabled,
+//                onCheckedChange = null,
+//            )
+//        }
     }
 }

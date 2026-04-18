@@ -68,23 +68,23 @@ fun MediaLibraryPreferencesScreen(
                     description = stringResource(
                         id = R.string.mark_last_played_media_desc,
                     ),
-                    icon = DokiIcons.Check,
+                    icon = DokiIcons.BookMark,
                     isChecked = preferences.markLastPlayedMedia,
                     onClick = viewModel::toggleMarkLastPlayedMedia,
                     index = 0,
                     count = 2,
                 )
-                PreferenceSwitch(
-                    title = stringResource(id = R.string.floating_play_button),
-                    description = stringResource(
-                        id = R.string.floating_play_button_desc,
-                    ),
-                    icon = DokiIcons.SmartButton,
-                    isChecked = preferences.showFloatingPlayButton,
-                    onClick = viewModel::toggleShowFloatingPlayButton,
-                    index = 1,
-                    count = 2,
-                )
+//                PreferenceSwitch(
+//                    title = stringResource(id = R.string.floating_play_button),
+//                    description = stringResource(
+//                        id = R.string.floating_play_button_desc,
+//                    ),
+//                    icon = DokiIcons.SmartButton,
+//                    isChecked = preferences.showFloatingPlayButton,
+//                    onClick = viewModel::toggleShowFloatingPlayButton,
+//                    index = 1,
+//                    count = 2,
+//                )
             }
 
             ListSectionTitle(text = stringResource(id = R.string.scan))
@@ -124,7 +124,7 @@ fun MarkLastPlayedMediaSetting(
         description = stringResource(
             id = R.string.mark_last_played_media_desc,
         ),
-        icon = DokiIcons.Check,
+        icon = DokiIcons.BookMark,
         isChecked = isChecked,
         onClick = onClick,
     )

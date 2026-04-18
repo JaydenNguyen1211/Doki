@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -16,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.util.Consumer
 import androidx.lifecycle.compose.LifecycleStartEffect
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -96,6 +98,7 @@ class PlayerActivity : ComponentActivity() {
             }
 
             DokiPlayerTheme(darkTheme = true) {
+                val context = LocalContext.current
                 MediaPlayerScreen(
                     player = player ?: return@DokiPlayerTheme,
                     viewModel = viewModel,
@@ -120,6 +123,8 @@ class PlayerActivity : ComponentActivity() {
                     onBackClick = { finishAndStopPlayerSession() },
                     onPlayInBackgroundClick = {
                         playInBackground = true
+                        Toast.makeText(context,"Background playback enabled",
+                            Toast.LENGTH_SHORT).show()
                         finish()
                     },
                 )

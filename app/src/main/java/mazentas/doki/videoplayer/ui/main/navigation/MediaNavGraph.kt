@@ -11,7 +11,7 @@ import mazentas.doki.videoplayer.ui.player.utils.PlayerApi
 import mazentas.doki.videoplayer.ui.settings.navigation.navigateToSettings
 import mazentas.doki.videoplayer.ui.videopicker.navigation.MediaPickerRoute
 import mazentas.doki.videoplayer.ui.videopicker.navigation.mediaPickerScreen
-import mazentas.doki.videoplayer.ui.videopicker.navigation.navigateToMediaPickerScreen
+import mazentas.doki.videoplayer.ui.videopicker.navigation.navigateToMediaFolderPickerScreen
 
 @Serializable
 data object MediaRootRoute
@@ -31,7 +31,7 @@ fun NavGraphBuilder.mediaNavGraph(
                 }
                 context.startActivity(intent)
             },
-            onFolderClick = navController::navigateToMediaPickerScreen,
+            onFolderClick = navController::navigateToMediaFolderPickerScreen,
             onSettingsClick = navController::navigateToSettings,
         )
     }

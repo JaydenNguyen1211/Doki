@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ListItemDefaults
@@ -113,7 +115,7 @@ private fun FolderListItem(
         leadingContent = {
             Box(modifier = Modifier.padding(horizontal = 8.dp)) {
                 Icon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.folder_thumb),
+                    imageVector = Icons.Filled.Folder,
                     contentDescription = "",
                     tint = MaterialTheme.colorScheme.surfaceContainerHigh,
                     modifier = Modifier

@@ -14,7 +14,7 @@ data class PlayerPreferences(
     val playerVideoZoom: VideoContentScale = VideoContentScale.BEST_FIT,
     val defaultPlaybackSpeed: Float = 1.0f,
     val controllerAutoHideTimeout: Int = 2,
-    val seekIncrement: Int = 10,
+    val seekIncrement: Int = 5,
     val autoplay: Boolean = true,
     val autoPip: Boolean = true,
     val autoBackgroundPlay: Boolean = false,
