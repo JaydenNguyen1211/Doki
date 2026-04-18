@@ -1,5 +1,7 @@
 package mazentas.doki.videoplayer.ui.player.buttons
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
@@ -21,10 +23,11 @@ fun PlayerButton(
     modifier: Modifier = Modifier,
     shape: Shape = CircleShape,
     contentPadding: PaddingValues = PaddingValues(8.dp),
-    containerColor: Color = MaterialTheme.colorScheme.secondaryContainer,
+    containerColor: Color = Color.Transparent,
     contentColor: Color = MaterialTheme.colorScheme.onSecondaryContainer,
     disabledContainerColor: Color = MaterialTheme.colorScheme.surface.copy(alpha = 0.5f),
     disabledContentColor: Color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f),
+    borderStroke: BorderStroke? = null,
     isEnabled: Boolean = true,
     onClick: () -> Unit,
     onLongClick: (() -> Unit)? = null,
@@ -32,6 +35,7 @@ fun PlayerButton(
 ) {
     Surface(
         modifier = modifier
+            .then(if (borderStroke != null) Modifier.border(borderStroke, shape) else Modifier)
             .clip(shape)
             .combinedClickable(
                 role = Role.Button,

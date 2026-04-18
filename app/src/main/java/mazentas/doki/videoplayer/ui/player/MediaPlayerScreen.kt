@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -51,11 +52,14 @@ import androidx.media3.session.MediaController
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.model.ControlButtonsPosition
 import mazentas.doki.videoplayer.model.PlayerPreferences
+import mazentas.doki.videoplayer.ui.player.buttons.LoopButton
 import mazentas.doki.videoplayer.ui.player.buttons.NextButton
 import mazentas.doki.videoplayer.ui.player.buttons.PlayPauseButton
 import mazentas.doki.videoplayer.ui.player.buttons.PlayerButton
 import mazentas.doki.videoplayer.ui.player.buttons.PreviousButton
+import mazentas.doki.videoplayer.ui.player.extensions.drawableRes
 import mazentas.doki.videoplayer.ui.player.state.ControlsVisibilityState
+import mazentas.doki.videoplayer.ui.player.state.MediaPresentationState
 import mazentas.doki.videoplayer.ui.player.state.rememberBrightnessState
 import mazentas.doki.videoplayer.ui.player.state.rememberControlsVisibilityState
 import mazentas.doki.videoplayer.ui.player.state.rememberMediaPresentationState
@@ -74,7 +78,8 @@ import mazentas.doki.videoplayer.ui.player.ui.OverlayShowView
 import mazentas.doki.videoplayer.ui.player.ui.OverlayView
 import mazentas.doki.videoplayer.ui.player.ui.SubtitleConfiguration
 import mazentas.doki.videoplayer.ui.player.ui.VerticalProgressView
-import mazentas.doki.videoplayer.ui.player.ui.controls.ControlsBottomView
+import mazentas.doki.videoplayer.ui.player.ui.controls.ControlOptionOverlayView
+import mazentas.doki.videoplayer.ui.player.ui.controls.ControlsPlayView
 import mazentas.doki.videoplayer.ui.player.ui.controls.ControlsTopView
 import kotlin.time.Duration.Companion.seconds
 
@@ -157,6 +162,7 @@ fun MediaPlayerScreen(
             Box(
                 modifier = modifier
                     .fillMaxSize()
+                    .systemBarsPadding()
                     .background(Color.Black),
             ) {
                 PlayerContentFrame(
@@ -232,51 +238,34 @@ fun MediaPlayerScreen(
                                 enter = fadeIn(),
                                 exit = fadeOut(),
                             ) {
-                                ControlsTopView(
-                                    title = metadataState.title ?: "",
-                                    onAudioClick = {
-                                        controlsVisibilityState.hideControls()
-                                        overlayView = OverlayView.AUDIO_SELECTOR
-                                    },
-                                    onSubtitleClick = {
-                                        controlsVisibilityState.hideControls()
-                                        overlayView = OverlayView.SUBTITLE_SELECTOR
-                                    },
-                                    onPlaybackSpeedClick = {
-                                        controlsVisibilityState.hideControls()
-                                        overlayView = OverlayView.PLAYBACK_SPEED
-                                    },
-                                    onBackClick = onBackClick,
-                                )
-                            }
-                        },
-                        middleView = {
-                            when {
-                                seekGestureState.seekAmount != null -> InfoView(info = "${seekGestureState.seekAmountFormatted}\n[${seekGestureState.seekToPositionFormated}]")
-                                videoZoomAndContentScaleState.isZooming -> InfoView(info = "${(videoZoomAndContentScaleState.zoom * 100).toInt()}%")
-                                controlsVisibilityState.controlsVisible -> ControlsMiddleView(player = player)
-                                else -> Unit
-                            }
-                        },
-                        bottomView = {
-                            AnimatedVisibility(
-                                visible = controlsVisibilityState.controlsVisible && !controlsVisibilityState.controlsLocked,
-                                enter = fadeIn(),
-                                exit = fadeOut(),
-                            ) {
-                                val context = LocalContext.current
-                                ControlsBottomView(
+                                Column(
+                                ) {
+                                    val context = LocalContext.current
+                                    ControlsTopView(
+                                        title = metadataState.title ?: "",
+                                        onAudioClick = {
+                                            controlsVisibilityState.hideControls()
+                                            overlayView = OverlayView.AUDIO_SELECTOR
+                                        },
+                                        onSubtitleClick = {
+                                            controlsVisibilityState.hideControls()
+                                            overlayView = OverlayView.SUBTITLE_SELECTOR
+                                        },
+                                        onPlaybackSpeedClick = {
+                                            controlsVisibilityState.hideControls()
+                                            overlayView = OverlayView.PLAYBACK_SPEED
+                                        },
+                                        onBackClick = onBackClick,
+                                    )
+
+                                    ControlOptionOverlayView(
                                     player = player,
-                                    mediaPresentationState = mediaPresentationState,
                                     controlsAlignment = when (playerPreferences.controlButtonsPosition) {
                                         ControlButtonsPosition.LEFT -> Alignment.Start
                                         ControlButtonsPosition.RIGHT -> Alignment.End
                                     },
                                     videoContentScale = videoZoomAndContentScaleState.videoContentScale,
                                     isPipSupported = pictureInPictureState.isPipSupported,
-                                    onSeek = seekGestureState::onSeek,
-                                    onSeekEnd = seekGestureState::onSeekEnd,
-                                    onRotateClick = rotationState::rotate,
                                     onPlayInBackgroundClick = onPlayInBackgroundClick,
                                     onLockControlsClick = {
                                         controlsVisibilityState.showControls()
@@ -299,6 +288,60 @@ fun MediaPlayerScreen(
                                         }
                                     },
                                 )
+                                }
+                            }
+                        },
+                        middleView = {
+                        },
+                        bottomView = {
+                            AnimatedVisibility(
+                                visible = controlsVisibilityState.controlsVisible && !controlsVisibilityState.controlsLocked,
+                                enter = fadeIn(),
+                                exit = fadeOut(),
+                            ) {
+                                val context = LocalContext.current
+                                ControlsPlayView(player = player,    mediaPresentationState = mediaPresentationState,
+                                    onSeek = seekGestureState::onSeek,
+                                    onSeekEnd = seekGestureState::onSeekEnd,
+                                    onRotateClick = rotationState::rotate,
+                                    controlsAlignment = when (playerPreferences.controlButtonsPosition) {
+                                        ControlButtonsPosition.LEFT -> Alignment.Start
+                                        ControlButtonsPosition.RIGHT -> Alignment.End
+                                    })
+//                                ControlsBottomView(
+//                                    player = player,
+//                                    mediaPresentationState = mediaPresentationState,
+//                                    controlsAlignment = when (playerPreferences.controlButtonsPosition) {
+//                                        ControlButtonsPosition.LEFT -> Alignment.Start
+//                                        ControlButtonsPosition.RIGHT -> Alignment.End
+//                                    },
+//                                    videoContentScale = videoZoomAndContentScaleState.videoContentScale,
+//                                    isPipSupported = pictureInPictureState.isPipSupported,
+//                                    onSeek = seekGestureState::onSeek,
+//                                    onSeekEnd = seekGestureState::onSeekEnd,
+//                                    onRotateClick = rotationState::rotate,
+//                                    onPlayInBackgroundClick = onPlayInBackgroundClick,
+//                                    onLockControlsClick = {
+//                                        controlsVisibilityState.showControls()
+//                                        controlsVisibilityState.lockControls()
+//                                    },
+//                                    onVideoContentScaleClick = {
+//                                        controlsVisibilityState.showControls()
+//                                        videoZoomAndContentScaleState.switchToNextVideoContentScale()
+//                                    },
+//                                    onVideoContentScaleLongClick = {
+//                                        controlsVisibilityState.hideControls()
+//                                        overlayView = OverlayView.VIDEO_CONTENT_SCALE
+//                                    },
+//                                    onPictureInPictureClick = {
+//                                        if (!pictureInPictureState.hasPipPermission) {
+//                                            Toast.makeText(context, R.string.enable_pip_from_settings, Toast.LENGTH_SHORT).show()
+//                                            pictureInPictureState.openPictureInPictureSettings()
+//                                        } else {
+//                                            pictureInPictureState.enterPictureInPictureMode()
+//                                        }
+//                                    },
+//                                )
                             }
                         },
                     )
@@ -376,18 +419,7 @@ fun InfoView(
     }
 }
 
-@Composable
-fun ControlsMiddleView(modifier: Modifier = Modifier, player: Player) {
-    Row(
-        modifier = modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(40.dp, alignment = Alignment.CenterHorizontally),
-        verticalAlignment = Alignment.CenterVertically,
-    ) {
-        PreviousButton(player = player)
-        PlayPauseButton(player = player)
-        NextButton(player = player)
-    }
-}
+
 
 @Composable
 fun PlayerControlsView(

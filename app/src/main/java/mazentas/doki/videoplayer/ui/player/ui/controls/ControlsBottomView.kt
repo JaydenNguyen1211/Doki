@@ -47,21 +47,24 @@ import androidx.media3.common.util.UnstableApi
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.model.VideoContentScale
 import mazentas.doki.videoplayer.ui.player.buttons.LoopButton
+import mazentas.doki.videoplayer.ui.player.buttons.NextButton
+import mazentas.doki.videoplayer.ui.player.buttons.PlayPauseButton
 import mazentas.doki.videoplayer.ui.player.buttons.PlayerButton
+import mazentas.doki.videoplayer.ui.player.buttons.PreviousButton
 import mazentas.doki.videoplayer.ui.player.extensions.drawableRes
 import mazentas.doki.videoplayer.ui.player.extensions.noRippleClickable
 import mazentas.doki.videoplayer.ui.player.state.MediaPresentationState
 import mazentas.doki.videoplayer.ui.player.state.durationFormatted
 import mazentas.doki.videoplayer.ui.player.state.pendingPositionFormatted
 import mazentas.doki.videoplayer.ui.player.state.positionFormatted
+import mazentas.doki.videoplayer.ui.theme.backgroundPlayButtonColor
 import mazentas.doki.videoplayer.ui.theme.primaryLight
 
 @OptIn(UnstableApi::class)
 @Composable
-fun ControlsBottomView(
+fun ControlOptionOverlayView(
     modifier: Modifier = Modifier,
     player: Player,
-    mediaPresentationState: MediaPresentationState,
     controlsAlignment: Alignment.Horizontal,
     videoContentScale: VideoContentScale,
     isPipSupported: Boolean,
@@ -69,115 +72,119 @@ fun ControlsBottomView(
     onVideoContentScaleLongClick: () -> Unit,
     onLockControlsClick: () -> Unit,
     onPictureInPictureClick: () -> Unit,
-    onRotateClick: () -> Unit,
     onPlayInBackgroundClick: () -> Unit,
-    onSeek: (Long) -> Unit,
-    onSeekEnd: () -> Unit,
+
 ) {
-    Column(
-        modifier = modifier
-            .background(
-                Brush.verticalGradient(
-                    colorStops = arrayOf(
-                        0f to Color.Transparent,
-                        1f to Color.Black.copy(alpha = 0.3f),
-                    ),
-                ),
-            )
-            .navigationBarsPadding()
-            .displayCutoutPadding()
-            .padding(horizontal = 8.dp)
-            .padding(top = 16.dp),
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp, alignment = controlsAlignment),
     ) {
-        Row(
-            modifier = Modifier.padding(horizontal = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
+        PlayerButton(onClick = onLockControlsClick, containerColor = backgroundPlayButtonColor) {
+            Icon(
+                painter = painterResource(R.drawable.ic_lock_open),
+                contentDescription = null,
+            )
+        }
+        PlayerButton(
+            onClick = onVideoContentScaleClick,
+            onLongClick = onVideoContentScaleLongClick,
+            containerColor = backgroundPlayButtonColor
         ) {
-            var showPendingPosition by rememberSaveable { mutableStateOf(false) }
-
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.noRippleClickable {
-                    showPendingPosition = !showPendingPosition
-                },
-            ) {
-                Text(
-                    text = when (showPendingPosition) {
-                        true -> "-${mediaPresentationState.pendingPositionFormatted}"
-                        false -> mediaPresentationState.positionFormatted
-                    },
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                )
-                Text(
-                    text = " / ",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                )
-                Text(
-                    text = mediaPresentationState.durationFormatted,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = Color.White,
-                )
-            }
-
-            Spacer(modifier = Modifier.weight(1f))
-            PlayerButton(
-                modifier = modifier,
-                onClick = onRotateClick,
-            ) {
+            Icon(
+                painter = painterResource(videoContentScale.drawableRes()),
+                contentDescription = null,
+            )
+        }
+        if (isPipSupported) {
+            PlayerButton(onClick = onPictureInPictureClick, containerColor = backgroundPlayButtonColor) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_screen_rotation),
+                    painter = painterResource(R.drawable.ic_pip),
                     contentDescription = null,
-                    modifier = Modifier.size(12.dp),
                 )
             }
         }
-        PlayerSeekbar(
-            position = mediaPresentationState.position.toFloat(),
-            duration = mediaPresentationState.duration.toFloat(),
-            onSeek = { onSeek(it.toLong()) },
-            onSeekFinished = { onSeekEnd() },
-        )
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp, alignment = controlsAlignment),
-        ) {
-            PlayerButton(onClick = onLockControlsClick) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_lock_open),
-                    contentDescription = null,
-                )
-            }
-            PlayerButton(
-                onClick = onVideoContentScaleClick,
-                onLongClick = onVideoContentScaleLongClick,
-            ) {
-                Icon(
-                    painter = painterResource(videoContentScale.drawableRes()),
-                    contentDescription = null,
-                )
-            }
-            if (isPipSupported) {
-                PlayerButton(onClick = onPictureInPictureClick) {
-                    Icon(
-                        painter = painterResource(R.drawable.ic_pip),
-                        contentDescription = null,
-                    )
-                }
-            }
-            PlayerButton(onClick = onPlayInBackgroundClick) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_headset),
-                    contentDescription = null,
-                )
-            }
-            LoopButton(player = player)
+        PlayerButton(onClick = onPlayInBackgroundClick, containerColor = backgroundPlayButtonColor) {
+            Icon(
+                painter = painterResource(R.drawable.ic_headset),
+                contentDescription = null,
+            )
         }
+        LoopButton(player = player)
     }
+}
+
+@Composable
+fun ControlsPlayView(modifier: Modifier = Modifier, player: Player, mediaPresentationState: MediaPresentationState,onSeek: (Long) -> Unit,
+                     onSeekEnd: () -> Unit, onRotateClick: () -> Unit,  controlsAlignment: Alignment.Horizontal) {
+
+   Column {
+       var showPendingPosition by rememberSaveable { mutableStateOf(false) }
+
+      Row(
+          modifier = Modifier
+          .fillMaxWidth()
+          .padding(horizontal = 8.dp),
+          verticalAlignment = Alignment.CenterVertically,
+          horizontalArrangement = Arrangement.spacedBy(8.dp, alignment = controlsAlignment),) {
+          Row(
+              verticalAlignment = Alignment.CenterVertically,
+              modifier = Modifier.noRippleClickable {
+                  showPendingPosition = !showPendingPosition
+              },
+          ) {
+              Text(
+                  text = when (showPendingPosition) {
+                      true -> "-${mediaPresentationState.pendingPositionFormatted}"
+                      false -> mediaPresentationState.positionFormatted
+                  },
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = Color.White,
+              )
+              Text(
+                  text = " / ",
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = Color.White,
+              )
+              Text(
+                  text = mediaPresentationState.durationFormatted,
+                  style = MaterialTheme.typography.bodyMedium,
+                  color = Color.White,
+              )
+          }
+
+          Spacer(modifier = Modifier.weight(1f))
+          PlayerButton(
+              modifier = modifier,
+              onClick = onRotateClick,
+              containerColor = backgroundPlayButtonColor
+          ) {
+              Icon(
+                  painter = painterResource(R.drawable.ic_screen_rotation),
+                  contentDescription = null,
+              )
+          }
+      }
+
+       PlayerSeekbar(
+           position = mediaPresentationState.position.toFloat(),
+           duration = mediaPresentationState.duration.toFloat(),
+           onSeek = { onSeek(it.toLong()) },
+           onSeekFinished = { onSeekEnd() },
+       )
+
+       Row(
+           modifier = modifier.fillMaxWidth(),
+           horizontalArrangement = Arrangement.spacedBy(40.dp, alignment = Alignment.CenterHorizontally),
+           verticalAlignment = Alignment.CenterVertically,
+       ) {
+           PreviousButton(player = player)
+           PlayPauseButton(player = player)
+           NextButton(player = player)
+       }
+   }
 }
 
 @kotlin.OptIn(ExperimentalMaterial3Api::class)

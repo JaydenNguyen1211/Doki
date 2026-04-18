@@ -258,3 +258,4 @@ val surfaceContainerHighDarkHighContrast = Color(0xFF363D3C)
 val surfaceContainerHighestDarkHighContrast = Color(0xFF414847)
 
 val seed = Color(0xFF2B4241)
+val backgroundPlayButtonColor = Color(0x4D000000)
