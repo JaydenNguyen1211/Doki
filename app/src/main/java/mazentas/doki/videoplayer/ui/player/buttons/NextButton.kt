@@ -14,6 +14,7 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.compose.state.rememberNextButtonState
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.player.LocalControlsVisibilityState
+import mazentas.doki.videoplayer.ui.theme.MediumIconSize
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -33,7 +34,7 @@ internal fun NextButton(player: Player, modifier: Modifier = Modifier) {
         Icon(
             painter = painterResource(R.drawable.ic_skip_next),
             contentDescription = stringResource(R.string.player_controls_next),
-            modifier = Modifier.size(24.dp),
+            modifier = Modifier.size(MediumIconSize),
         )
     }
 }

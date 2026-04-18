@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.media3.common.Player
 import androidx.media3.ui.compose.state.rememberPlayPauseButtonState
 import mazentas.doki.videoplayer.R
+import mazentas.doki.videoplayer.ui.theme.MediumIconSize
 
 @Composable
 fun PlayPauseButton(player: Player, modifier: Modifier = Modifier) {
@@ -37,7 +38,7 @@ fun PlayPauseButton(player: Player, modifier: Modifier = Modifier) {
         Icon(
             painter = icon,
             contentDescription = contentDescription,
-            modifier = Modifier.size(24.dp),
+            modifier = Modifier.size(MediumIconSize),
         )
     }
 }

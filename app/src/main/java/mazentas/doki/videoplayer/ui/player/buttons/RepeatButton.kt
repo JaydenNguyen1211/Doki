@@ -1,6 +1,7 @@
 package mazentas.doki.videoplayer.ui.player.buttons
 
 import androidx.annotation.OptIn
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,6 +13,9 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.compose.state.rememberRepeatButtonState
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.player.LocalControlsVisibilityState
+import mazentas.doki.videoplayer.ui.theme.BigButtonSize
+import mazentas.doki.videoplayer.ui.theme.DefaultButtonSize
+import mazentas.doki.videoplayer.ui.theme.DefaultIconSize
 import mazentas.doki.videoplayer.ui.theme.backgroundPlayButtonColor
 
 @OptIn(UnstableApi::class)
@@ -32,6 +36,7 @@ fun LoopButton(player: Player, modifier: Modifier = Modifier) {
         Icon(
             painter = repeatModeIconPainter(state.repeatModeState),
             contentDescription = repeatModeContentDescription(state.repeatModeState),
+            modifier = Modifier.size(DefaultIconSize)
         )
     }
 }

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.media3.common.util.UnstableApi
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.player.buttons.PlayerButton
+import mazentas.doki.videoplayer.ui.theme.DefaultIconSize
 
 @OptIn(UnstableApi::class)
 @Composable
@@ -29,7 +31,6 @@ fun ControlsTopView(
     title: String,
     onAudioClick: () -> Unit = {},
     onSubtitleClick: () -> Unit = {},
-    onPlaybackSpeedClick: () -> Unit = {},
     onBackClick: () -> Unit,
 ) {
     Row(
@@ -53,6 +54,7 @@ fun ControlsTopView(
             Icon(
                 painter = painterResource(R.drawable.ic_arrow_left),
                 contentDescription = null,
+                modifier = Modifier.size(DefaultIconSize)
             )
         }
         Text(
@@ -68,24 +70,21 @@ fun ControlsTopView(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            PlayerButton(onClick = onPlaybackSpeedClick) {
+            PlayerButton(onClick = onSubtitleClick) {
                 Icon(
-                    painter = painterResource(R.drawable.ic_speed),
+                    painter = painterResource(R.drawable.ic_subtitle_track),
                     contentDescription = null,
+                    modifier = Modifier.size(DefaultIconSize)
                 )
             }
             PlayerButton(onClick = onAudioClick) {
                 Icon(
                     painter = painterResource(R.drawable.ic_audio_track),
                     contentDescription = null,
+                    modifier = Modifier.size(DefaultIconSize)
                 )
             }
-            PlayerButton(onClick = onSubtitleClick) {
-                Icon(
-                    painter = painterResource(R.drawable.ic_subtitle_track),
-                    contentDescription = null,
-                )
-            }
+
         }
     }
 }

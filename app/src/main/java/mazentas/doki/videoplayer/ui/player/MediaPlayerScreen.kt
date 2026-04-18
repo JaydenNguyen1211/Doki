@@ -251,10 +251,6 @@ fun MediaPlayerScreen(
                                             controlsVisibilityState.hideControls()
                                             overlayView = OverlayView.SUBTITLE_SELECTOR
                                         },
-                                        onPlaybackSpeedClick = {
-                                            controlsVisibilityState.hideControls()
-                                            overlayView = OverlayView.PLAYBACK_SPEED
-                                        },
                                         onBackClick = onBackClick,
                                     )
 
@@ -264,21 +260,14 @@ fun MediaPlayerScreen(
                                         ControlButtonsPosition.LEFT -> Alignment.Start
                                         ControlButtonsPosition.RIGHT -> Alignment.End
                                     },
-                                    videoContentScale = videoZoomAndContentScaleState.videoContentScale,
+                                        onPlaybackSpeedClick = {
+                                            controlsVisibilityState.hideControls()
+                                            overlayView = OverlayView.PLAYBACK_SPEED
+                                        },
+
                                     isPipSupported = pictureInPictureState.isPipSupported,
                                     onPlayInBackgroundClick = onPlayInBackgroundClick,
-                                    onLockControlsClick = {
-                                        controlsVisibilityState.showControls()
-                                        controlsVisibilityState.lockControls()
-                                    },
-                                    onVideoContentScaleClick = {
-                                        controlsVisibilityState.showControls()
-                                        videoZoomAndContentScaleState.switchToNextVideoContentScale()
-                                    },
-                                    onVideoContentScaleLongClick = {
-                                        controlsVisibilityState.hideControls()
-                                        overlayView = OverlayView.VIDEO_CONTENT_SCALE
-                                    },
+                                        onRotateClick = rotationState::rotate,
                                     onPictureInPictureClick = {
                                         if (!pictureInPictureState.hasPipPermission) {
                                             Toast.makeText(context, R.string.enable_pip_from_settings, Toast.LENGTH_SHORT).show()
@@ -303,7 +292,19 @@ fun MediaPlayerScreen(
                                 ControlsPlayView(player = player,    mediaPresentationState = mediaPresentationState,
                                     onSeek = seekGestureState::onSeek,
                                     onSeekEnd = seekGestureState::onSeekEnd,
-                                    onRotateClick = rotationState::rotate,
+                                    videoContentScale = videoZoomAndContentScaleState.videoContentScale,
+                                    onLockControlsClick = {
+                                        controlsVisibilityState.showControls()
+                                        controlsVisibilityState.lockControls()
+                                    },
+                                    onVideoContentScaleClick = {
+                                        controlsVisibilityState.showControls()
+                                        videoZoomAndContentScaleState.switchToNextVideoContentScale()
+                                    },
+                                    onVideoContentScaleLongClick = {
+                                        controlsVisibilityState.hideControls()
+                                        overlayView = OverlayView.VIDEO_CONTENT_SCALE
+                                    }    ,
                                     controlsAlignment = when (playerPreferences.controlButtonsPosition) {
                                         ControlButtonsPosition.LEFT -> Alignment.Start
                                         ControlButtonsPosition.RIGHT -> Alignment.End

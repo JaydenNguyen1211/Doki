@@ -57,6 +57,8 @@ import mazentas.doki.videoplayer.ui.player.state.MediaPresentationState
 import mazentas.doki.videoplayer.ui.player.state.durationFormatted
 import mazentas.doki.videoplayer.ui.player.state.pendingPositionFormatted
 import mazentas.doki.videoplayer.ui.player.state.positionFormatted
+import mazentas.doki.videoplayer.ui.theme.DefaultIconSize
+import mazentas.doki.videoplayer.ui.theme.MediumIconSize
 import mazentas.doki.videoplayer.ui.theme.backgroundPlayButtonColor
 import mazentas.doki.videoplayer.ui.theme.primaryLight
 
@@ -66,14 +68,11 @@ fun ControlOptionOverlayView(
     modifier: Modifier = Modifier,
     player: Player,
     controlsAlignment: Alignment.Horizontal,
-    videoContentScale: VideoContentScale,
     isPipSupported: Boolean,
-    onVideoContentScaleClick: () -> Unit,
-    onVideoContentScaleLongClick: () -> Unit,
-    onLockControlsClick: () -> Unit,
+    onRotateClick: () -> Unit,
     onPictureInPictureClick: () -> Unit,
     onPlayInBackgroundClick: () -> Unit,
-
+    onPlaybackSpeedClick: () -> Unit = {}
 ) {
     Row(
         modifier = Modifier
@@ -82,20 +81,16 @@ fun ControlOptionOverlayView(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp, alignment = controlsAlignment),
     ) {
-        PlayerButton(onClick = onLockControlsClick, containerColor = backgroundPlayButtonColor) {
-            Icon(
-                painter = painterResource(R.drawable.ic_lock_open),
-                contentDescription = null,
-            )
-        }
+
         PlayerButton(
-            onClick = onVideoContentScaleClick,
-            onLongClick = onVideoContentScaleLongClick,
+            modifier = modifier,
+            onClick = onRotateClick,
             containerColor = backgroundPlayButtonColor
         ) {
             Icon(
-                painter = painterResource(videoContentScale.drawableRes()),
+                painter = painterResource(R.drawable.ic_screen_rotation),
                 contentDescription = null,
+                modifier = Modifier.size(DefaultIconSize)
             )
         }
         if (isPipSupported) {
@@ -103,13 +98,22 @@ fun ControlOptionOverlayView(
                 Icon(
                     painter = painterResource(R.drawable.ic_pip),
                     contentDescription = null,
+                    modifier = Modifier.size(DefaultIconSize)
                 )
             }
+        }
+        PlayerButton(onClick = onPlaybackSpeedClick,  containerColor = backgroundPlayButtonColor) {
+            Icon(
+                painter = painterResource(R.drawable.ic_speed),
+                contentDescription = null,
+                modifier = Modifier.size(DefaultIconSize)
+            )
         }
         PlayerButton(onClick = onPlayInBackgroundClick, containerColor = backgroundPlayButtonColor) {
             Icon(
                 painter = painterResource(R.drawable.ic_headset),
                 contentDescription = null,
+                modifier = Modifier.size(DefaultIconSize)
             )
         }
         LoopButton(player = player)
@@ -118,9 +122,14 @@ fun ControlOptionOverlayView(
 
 @Composable
 fun ControlsPlayView(modifier: Modifier = Modifier, player: Player, mediaPresentationState: MediaPresentationState,onSeek: (Long) -> Unit,
-                     onSeekEnd: () -> Unit, onRotateClick: () -> Unit,  controlsAlignment: Alignment.Horizontal) {
+                     onSeekEnd: () -> Unit,   controlsAlignment: Alignment.Horizontal,
+                     videoContentScale: VideoContentScale,
+                     onVideoContentScaleClick: () -> Unit,
+                     onVideoContentScaleLongClick: () -> Unit,
+                     onLockControlsClick: () -> Unit,
+) {
 
-   Column {
+   Column (modifier = modifier.padding(8.dp)){
        var showPendingPosition by rememberSaveable { mutableStateOf(false) }
 
       Row(
@@ -156,16 +165,6 @@ fun ControlsPlayView(modifier: Modifier = Modifier, player: Player, mediaPresent
           }
 
           Spacer(modifier = Modifier.weight(1f))
-          PlayerButton(
-              modifier = modifier,
-              onClick = onRotateClick,
-              containerColor = backgroundPlayButtonColor
-          ) {
-              Icon(
-                  painter = painterResource(R.drawable.ic_screen_rotation),
-                  contentDescription = null,
-              )
-          }
       }
 
        PlayerSeekbar(
@@ -177,12 +176,30 @@ fun ControlsPlayView(modifier: Modifier = Modifier, player: Player, mediaPresent
 
        Row(
            modifier = modifier.fillMaxWidth(),
-           horizontalArrangement = Arrangement.spacedBy(40.dp, alignment = Alignment.CenterHorizontally),
+           horizontalArrangement = Arrangement.spacedBy(32.dp, alignment = Alignment.CenterHorizontally),
            verticalAlignment = Alignment.CenterVertically,
        ) {
+           PlayerButton(onClick = onLockControlsClick) {
+               Icon(
+                   painter = painterResource(R.drawable.ic_lock_open),
+                   contentDescription = null,
+                   modifier = Modifier.size(MediumIconSize)
+               )
+           }
            PreviousButton(player = player)
            PlayPauseButton(player = player)
            NextButton(player = player)
+
+           PlayerButton(
+               onClick = onVideoContentScaleClick,
+               onLongClick = onVideoContentScaleLongClick
+           ) {
+               Icon(
+                   painter = painterResource(videoContentScale.drawableRes()),
+                   contentDescription = null,
+                   modifier = Modifier.size(MediumIconSize)
+               )
+           }
        }
    }
 }
