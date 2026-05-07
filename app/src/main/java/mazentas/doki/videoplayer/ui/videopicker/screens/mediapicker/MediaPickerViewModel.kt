@@ -135,6 +135,7 @@ data class MediaPickerUiState(
     val mediaDataState: DataState<Folder?> = DataState.Loading,
     val refreshing: Boolean = false,
     val preferences: ApplicationPreferences = ApplicationPreferences(),
+    var isPermissionGeneralViewShowed: Boolean = false,
 )
 
 sealed interface MediaPickerUiEvent {

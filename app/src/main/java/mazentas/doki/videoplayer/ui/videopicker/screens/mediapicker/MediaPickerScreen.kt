@@ -370,6 +370,11 @@ internal fun MediaPickerScreen(
                         isGranted = permissionState.status.isGranted,
                         showRationale = permissionState.status.shouldShowRationale,
                         permission = permissionState.permission,
+                        isGeneralViewShowed = uiState.isPermissionGeneralViewShowed,
+                        onGeneralViewGrantClick = {
+                            permissionState.launchPermissionRequest()
+                            uiState.isPermissionGeneralViewShowed = true
+                        },
                         launchPermissionRequest = { permissionState.launchPermissionRequest() },
                     ) {
                         MediaView(
@@ -668,24 +673,13 @@ private fun MediaPickerScreenPreview(
                         name = "Root Folder",
                         path = "/root",
                         dateModified = System.currentTimeMillis(),
-                        folderList = listOf(
-                            Folder(
-                                name = "Folder 1",
-                                path = "/root/folder1",
-                                dateModified = System.currentTimeMillis()
-                            ),
-                            Folder(
-                                name = "Folder 2",
-                                path = "/root/folder2",
-                                dateModified = System.currentTimeMillis()
-                            ),
-                        ),
+
                         mediaList = videos,
                     ),
                 ),
                 preferences = ApplicationPreferences().copy(
-                    mediaViewMode = MediaViewMode.FOLDER_TREE,
-                    mediaLayoutMode = MediaLayoutMode.GRID,
+                    mediaViewMode = MediaViewMode.VIDEOS,
+                    mediaLayoutMode = MediaLayoutMode.LIST,
                 ),
             ),
         )

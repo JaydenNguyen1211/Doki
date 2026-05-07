@@ -40,6 +40,7 @@ import mazentas.doki.videoplayer.common.storagePermission
 import mazentas.doki.videoplayer.media.services.MediaService
 import mazentas.doki.videoplayer.media.sync.MediaSynchronizer
 import mazentas.doki.videoplayer.model.ThemeConfig
+import mazentas.doki.videoplayer.ui.composables.PermissionMissingView
 import mazentas.doki.videoplayer.ui.main.navigation.MediaRootRoute
 import mazentas.doki.videoplayer.ui.main.navigation.mediaNavGraph
 import mazentas.doki.videoplayer.ui.main.navigation.settingsNavGraph
@@ -94,18 +95,26 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.surface,
                 ) {
-//                    val storagePermissionState = rememberPermissionState(permission = storagePermission)
+                    val storagePermissionState = rememberPermissionState(permission = storagePermission)
+
+//                    var isGeneralViewShowed
 //
 //                    LifecycleEventEffect(event = Lifecycle.Event.ON_START) {
 //                        Timber.tag(TAG).d("onCreate: ${storagePermissionState.permission}")
 //                        storagePermissionState.launchPermissionRequest()
 //                    }
-//
-//                    LaunchedEffect(key1 = storagePermissionState.status.isGranted) {
-//                        if (storagePermissionState.status.isGranted) {
-//                            synchronizer.startSync()
+
+//                    if (!storagePermissionState.status.isGranted) {
+//                        PermissioGeneralView {
+//                            storagePermissionState.launchPermissionRequest()
 //                        }
 //                    }
+//
+                    LaunchedEffect(key1 = storagePermissionState.status.isGranted) {
+                        if (storagePermissionState.status.isGranted) {
+                            synchronizer.startSync()
+                        }
+                    }
 
                     val mainNavController = rememberNavController()
 

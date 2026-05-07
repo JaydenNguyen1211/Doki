@@ -7,6 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="splash_background">#1A1A2E</color>
     <color name="player_background">#4D000000</color>
     <color name="transparent_white_300">#4DFFFFFF</color>
     <color name="seed">#2B4241</color>

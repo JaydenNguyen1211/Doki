@@ -21,10 +21,12 @@
     <string name="location">Location</string>
     <string name="menu">Menu</string>
     <string name="navigate_up">Navigate up</string>
-    <string name="no_videos_found">No videos found</string>
+    <string name="no_videos_found">No content detected</string>
+    <string name="allow">Allow</string>
     <string name="open_settings">Open Settings</string>
     <string name="permission_info">The Smart Video Player needs \"%1$s\" permission to access your videos. Without this, the app cannot play media. Please grant video access to enjoy full playback features.</string>
     <string name="permission_not_granted">Permission Not Granted</string>
+    <string name="permission_general_request">The Smart Video Player need access to your videos so you can view and manage them in the app.</string>
     <string name="permission_request">Permission Request</string>
     <string name="permission_settings">The Smart Video Player needs \"%1$s\" permission to access your videos. Without this, the app cannot play media. Please grant video access to enjoy full playback features. To use the app fully, grant the permission from settings since it was permanently denied.</string>
     <string name="player_controls_exit">Navigate up</string>

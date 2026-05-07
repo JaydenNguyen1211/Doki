@@ -11,17 +11,28 @@ fun PermissionMissingView(
     showRationale: Boolean,
     permission: String,
     launchPermissionRequest: () -> Unit,
+    isGeneralViewShowed: Boolean,
+    onGeneralViewGrantClick: () -> Unit,
     content: @Composable () -> Unit,
 ) {
     if (isGranted) {
         content()
-    } else  {
+    } else if (showRationale) {
         PermissionRationaleDialog(
             text = stringResource(
                 id = R.string.permission_info,
                 permission,
             ),
             onConfirmButtonClick = launchPermissionRequest,
+        )
+    } else if (!isGeneralViewShowed) {
+       PermissionGeneralView (onGeneralViewGrantClick)
+    } else {
+        PermissionDetailView(
+            text = stringResource(
+                id = R.string.permission_settings,
+                permission,
+            ),
         )
     }
 }

@@ -62,6 +62,7 @@ import mazentas.doki.videoplayer.ui.videopicker.composables.VideoInfoDialog
 import mazentas.doki.videoplayer.ui.videopicker.rememberSelectionManager
 import mazentas.doki.videoplayer.ui.videopicker.screens.mediapicker.MediaPickerUiEvent
 import mazentas.doki.videoplayer.ui.videopicker.screens.mediapicker.MediaPickerUiState
+import kotlin.math.log
 
 
 @SuppressLint("RememberReturnType")
@@ -125,6 +126,12 @@ internal fun MediaFolderPickerScreen(
                         isGranted = permissionState.status.isGranted,
                         showRationale = permissionState.status.shouldShowRationale,
                         permission = permissionState.permission,
+                        isGeneralViewShowed = uiState.isPermissionGeneralViewShowed,
+                        onGeneralViewGrantClick = {
+                            Log.d("GeneralClick", "MediaFolderPickerScreen: O")
+                            permissionState.launchPermissionRequest()
+                            uiState.isPermissionGeneralViewShowed = true
+                        },
                         launchPermissionRequest = { permissionState.launchPermissionRequest() },
                     ) {
                         MediaView(
