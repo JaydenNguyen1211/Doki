@@ -18,7 +18,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -37,6 +41,10 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import mazentas.doki.videoplayer.R
 import mazentas.doki.videoplayer.ui.main.MainActivity
+import mazentas.doki.videoplayer.ui.theme.onPrimaryLight
+import mazentas.doki.videoplayer.ui.theme.onTertiaryContainerLight
+import mazentas.doki.videoplayer.ui.theme.primaryLight
+import mazentas.doki.videoplayer.ui.theme.tertiaryLight
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : ComponentActivity() {
@@ -54,26 +62,27 @@ class SplashActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun SplashScreen(onFinished: () -> Unit) {
     var progress by remember { mutableFloatStateOf(0f) }
 
     val animatedProgress by animateFloatAsState(
         targetValue = progress,
-        animationSpec = tween(durationMillis = 5000, easing = LinearEasing),
+        animationSpec = tween(durationMillis = 4000, easing = LinearEasing),
         label = "loading_progress",
     )
 
     LaunchedEffect(Unit) {
         progress = 1f
-        delay(5000L)
+        delay(4000L)
         onFinished()
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFF1A1A2E)),
+            .background(onPrimaryLight),
         contentAlignment = Alignment.Center,
     ) {
         Column(
@@ -88,22 +97,25 @@ private fun SplashScreen(onFinished: () -> Unit) {
             Spacer(modifier = Modifier.height(20.dp))
             Text(
                 text = stringResource(id = R.string.app_name),
-                color = Color.White,
+                color = primaryLight,
                 fontSize = 28.sp,
                 fontWeight = FontWeight.Bold,
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = "by Jayden Nguyen",
-                color = Color.White.copy(alpha = 0.5f),
-                fontSize = 13.sp,
             )
             Spacer(modifier = Modifier.height(64.dp))
             LinearProgressIndicator(
                 progress = { animatedProgress },
                 modifier = Modifier.fillMaxWidth(0.55f),
-                color = Color(0xFF4DDAD6),
-                trackColor = Color.White.copy(alpha = 0.15f),
+                color = primaryLight,
+                trackColor = primaryLight.copy(alpha = 0.15f),
+                strokeCap = StrokeCap.Round,
+                drawStopIndicator = {
+                    val stopRadius = ProgressIndicatorDefaults.LinearTrackStopIndicatorSize.toPx() / 2f
+                    drawCircle(
+                        color = primaryLight.copy(alpha = 0.15f),
+                        radius = stopRadius,
+                        center = Offset(size.width - stopRadius, size.height / 2f),
+                    )
+                },
             )
         }
     }

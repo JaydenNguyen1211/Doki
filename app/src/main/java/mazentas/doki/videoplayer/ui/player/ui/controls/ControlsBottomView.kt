@@ -176,7 +176,7 @@ fun ControlsPlayView(modifier: Modifier = Modifier, player: Player, mediaPresent
 
        Row(
            modifier = modifier.fillMaxWidth(),
-           horizontalArrangement = Arrangement.spacedBy(32.dp, alignment = Alignment.CenterHorizontally),
+           horizontalArrangement = Arrangement.SpaceEvenly,
            verticalAlignment = Alignment.CenterVertically,
        ) {
            PlayerButton(onClick = onLockControlsClick) {
