@@ -91,13 +91,22 @@ class PictureInPictureState(
         }
     }
 
+    private var lastVideoViewRect: Rect? = null
+    private var lastAspectRatio: Rational? = null
+
     fun setVideoViewRect(rect: Rect) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return
         if (rect.width() <= 0 || rect.height() <= 0) return
+        if (rect == lastVideoViewRect) return
 
-        Rational(rect.width(), rect.height()).takeIf { it.toFloat() in 0.5f..2.39f }?.let {
-            pictureInPictureParamsBuilder.setAspectRatio(it)
+        lastVideoViewRect = rect
+
+        val newRatio = Rational(rect.width(), rect.height()).takeIf { it.toFloat() in 0.5f..2.39f }
+        if (newRatio != null && newRatio != lastAspectRatio) {
+            lastAspectRatio = newRatio
+            pictureInPictureParamsBuilder.setAspectRatio(newRatio)
         }
+
         pictureInPictureParamsBuilder.setSourceRectHint(rect)
         activity.setPictureInPictureParams(pictureInPictureParamsBuilder.build())
     }
