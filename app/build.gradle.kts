@@ -21,9 +21,9 @@ android {
     defaultConfig {
         applicationId = "mazentas.doki.videoplayer"
         minSdk = 24
-        targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.2"
+        targetSdk = 35
+        versionCode = 5
+        versionName = "1.0.4"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -123,6 +123,7 @@ dependencies {
     implementation(libs.github.anilbeesetti.nextlib.media3ext)
 
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
